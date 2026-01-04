@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaRatingsPlatform.PresentationLayer", "MediaRatingsPlatform.PresentationLayer\MediaRatingsPlatform.PresentationLayer.csproj", "{8AC1C9AB-40A8-44BA-A992-EBE9295C2139}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaRatingsPlatform.BusinessLayer", "MediaRatingsPlatform.BusinessLayer\MediaRatingsPlatform.BusinessLayer.csproj", "{93B44B17-6B4F-4FFF-8716-5BC586DBCC44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaRatingsPlatform.DataAccessLayer", "MediaRatingsPlatform.DataAccessLayer\MediaRatingsPlatform.DataAccessLayer.csproj", "{80E01493-0790-4481-A095-DDFEAF244DE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaRatingsPlatform.Models", "MediaRatingsPlatform.Models\MediaRatingsPlatform.Models.csproj", "{BD0BCA59-0CC5-4054-9DED-96FC4DD816A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaRatingsPlatform.CommandLine", "MediaRatingsPlatform.CommandLine\MediaRatingsPlatform.CommandLine.csproj", "{BC2F2BF4-0F44-483C-B8E7-DBE73FBEC36D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaRatingsPlatform.Test", "MediaRatingsPlatform.Test\MediaRatingsPlatform.Test.csproj", "{555995E6-0314-4BDF-8B20-D904C355EB0E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AC1C9AB-40A8-44BA-A992-EBE9295C2139}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AC1C9AB-40A8-44BA-A992-EBE9295C2139}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AC1C9AB-40A8-44BA-A992-EBE9295C2139}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AC1C9AB-40A8-44BA-A992-EBE9295C2139}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93B44B17-6B4F-4FFF-8716-5BC586DBCC44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93B44B17-6B4F-4FFF-8716-5BC586DBCC44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93B44B17-6B4F-4FFF-8716-5BC586DBCC44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93B44B17-6B4F-4FFF-8716-5BC586DBCC44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80E01493-0790-4481-A095-DDFEAF244DE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80E01493-0790-4481-A095-DDFEAF244DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80E01493-0790-4481-A095-DDFEAF244DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80E01493-0790-4481-A095-DDFEAF244DE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD0BCA59-0CC5-4054-9DED-96FC4DD816A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD0BCA59-0CC5-4054-9DED-96FC4DD816A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD0BCA59-0CC5-4054-9DED-96FC4DD816A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD0BCA59-0CC5-4054-9DED-96FC4DD816A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC2F2BF4-0F44-483C-B8E7-DBE73FBEC36D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2F2BF4-0F44-483C-B8E7-DBE73FBEC36D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC2F2BF4-0F44-483C-B8E7-DBE73FBEC36D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC2F2BF4-0F44-483C-B8E7-DBE73FBEC36D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{555995E6-0314-4BDF-8B20-D904C355EB0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{555995E6-0314-4BDF-8B20-D904C355EB0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{555995E6-0314-4BDF-8B20-D904C355EB0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{555995E6-0314-4BDF-8B20-D904C355EB0E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

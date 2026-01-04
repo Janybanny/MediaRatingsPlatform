@@ -1,0 +1,48 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+// https://dbdiagram.io/d
+
+Table users {
+  id string [primary key]
+  username string
+  password string
+  favouriteGenre string
+}
+
+Table tokens {
+  token int [primary key]
+  
+}
+
+Table media {
+  id int [primary key]
+  owner string [ref: > users.id]
+  title string
+  description string
+  type mediaType [note: 'movie, series or game']
+  releaseYear int
+  genre string
+  ageRestriction int
+}
+
+Table favourites {
+  id int [primary key]
+  userId string [ref: > users.id]
+  mediaId int [ref: > media.id]
+}
+
+Table ratings {
+  id int [primary key]
+  userId string [ref: > users.id]
+  mediaId int [ref: > media.id]
+  created_at timestamp [not null]
+  stars int [not null]
+  comment string [not null]
+  commentVisible bool [not null]
+}
+
+Table likes {
+  id int [primary key]
+  userId string [ref: > users.id]
+  ratingId int [ref: > ratings.id]
+}
