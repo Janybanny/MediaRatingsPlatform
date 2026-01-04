@@ -1,4 +1,4 @@
-using MediaRatingsPlatform.Models;
+using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.PresentationLayer;
 

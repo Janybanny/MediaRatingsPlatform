@@ -1,5 +1,5 @@
 using MediaRatingsPlatform.Authentication;
-using MediaRatingsPlatform.Models;
+using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
@@ -10,7 +10,7 @@ public class RecommendEndpoint : SimpleAuth, IHttpEndpoint {
             Body = "DEBUG: Recommend"
         };
         //success
-        string recommendations = ""; // includes recommendations
+        var recommendations = ""; // includes recommendations
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok,
             Body = recommendations

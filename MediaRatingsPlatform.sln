@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaRatingsPlatform.Busine
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaRatingsPlatform.DataAccessLayer", "MediaRatingsPlatform.DataAccessLayer\MediaRatingsPlatform.DataAccessLayer.csproj", "{80E01493-0790-4481-A095-DDFEAF244DE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaRatingsPlatform.Models", "MediaRatingsPlatform.Models\MediaRatingsPlatform.Models.csproj", "{BD0BCA59-0CC5-4054-9DED-96FC4DD816A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaRatingsPlatform.SharedObjects", "MediaRatingsPlatform.SharedObjects\MediaRatingsPlatform.SharedObjects.csproj", "{BD0BCA59-0CC5-4054-9DED-96FC4DD816A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaRatingsPlatform.CommandLine", "MediaRatingsPlatform.CommandLine\MediaRatingsPlatform.CommandLine.csproj", "{BC2F2BF4-0F44-483C-B8E7-DBE73FBEC36D}"
 EndProject

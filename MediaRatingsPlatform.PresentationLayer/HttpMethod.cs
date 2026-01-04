@@ -3,8 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace MediaRatingsPlatform.PresentationLayer;
 
 [SuppressMessage("ReSharper", "InconsistentNaming")]
-public enum HttpMethod
-{
+public enum HttpMethod {
     Get,
     Post,
     Put,
@@ -16,5 +15,5 @@ public enum HttpMethod
     get = Get,
     post = Post,
     put = Put,
-    delete = Delete,
+    delete = Delete
 }

@@ -3,8 +3,7 @@ using System.Net;
 
 namespace MediaRatingsPlatform.PresentationLayer;
 
-public class CreateHttpRequest
-{
+public class CreateHttpRequest {
     public static HttpRequest CreateRequest(IHttpListenerRequest request) {
         var formattedRequest = new HttpRequest();
         Enum.TryParse(request.HttpMethod, out HttpMethod requestMethod);
@@ -17,35 +16,31 @@ public class CreateHttpRequest
             .Where(key => !string.IsNullOrWhiteSpace(key))
             .ToDictionary(key => key!, key => request.Headers[key] ?? "");
         formattedRequest.Body = new StreamReader(request.InputStream).ReadToEnd();
-        for (int i = 0; i < formattedRequest.Path.Count; i++)
-        {
+        for (var i = 0; i < formattedRequest.Path.Count; i++) {
             if (!int.TryParse(formattedRequest.Path[i], out _)) continue;
-            if (formattedRequest.PathId == "")
-            {
+            if (formattedRequest.PathId == "") {
                 formattedRequest.PathId = formattedRequest.Path[i]!;
                 formattedRequest.Path[i] = null;
             }
-            else
-            {
+            else {
                 formattedRequest.Path = new List<string?>();
                 break;
             }
         }
+
         return formattedRequest;
     }
 }
 
-public interface IHttpListenerRequest
-{
-    public string HttpMethod  { get; }
+public interface IHttpListenerRequest {
+    public string HttpMethod { get; }
     public Uri? Url { get; }
-    public NameValueCollection QueryString { get;  }
-    public NameValueCollection Headers { get;  }
+    public NameValueCollection QueryString { get; }
+    public NameValueCollection Headers { get; }
     public Stream InputStream { get; }
 }
 
-public class HttpListenerRequestWrapper(HttpListenerRequest listenerRequest) :  IHttpListenerRequest
-{
+public class HttpListenerRequestWrapper(HttpListenerRequest listenerRequest) : IHttpListenerRequest {
     private readonly HttpListenerRequest _listenerRequest = listenerRequest;
     public string HttpMethod => _listenerRequest.HttpMethod;
     public Uri? Url => _listenerRequest.Url;

@@ -1,16 +1,15 @@
 using MediaRatingsPlatform.Authentication;
-using MediaRatingsPlatform.Models;
+using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
 public class UnFavouriteEndpoint : UserAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username)
-    {
+    public HttpResponse Handle(HttpRequest request, string username) {
         throw new ApiNotImplementedException();
-        
+
         //success
         return new HttpResponse {
-            StatusCode = HttpStatusCode.Ok,
+            StatusCode = HttpStatusCode.Ok
         };
     }
 }
@@ -18,10 +17,10 @@ public class UnFavouriteEndpoint : UserAuth, IHttpEndpoint {
 public class FavouriteEndpoint : UserAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request, string username) {
         throw new ApiNotImplementedException();
-        
+
         //success
         return new HttpResponse {
-            StatusCode = HttpStatusCode.NoContent,
+            StatusCode = HttpStatusCode.NoContent
         };
     }
 }

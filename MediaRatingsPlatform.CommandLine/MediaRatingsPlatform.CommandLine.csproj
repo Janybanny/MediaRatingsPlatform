@@ -9,14 +9,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MediaRatingsPlatform.BusinessLayer\MediaRatingsPlatform.BusinessLayer.csproj" />
-      <ProjectReference Include="..\MediaRatingsPlatform.DataAccessLayer\MediaRatingsPlatform.DataAccessLayer.csproj" />
-      <ProjectReference Include="..\MediaRatingsPlatform.Models\MediaRatingsPlatform.Models.csproj" />
-      <ProjectReference Include="..\MediaRatingsPlatform.PresentationLayer\MediaRatingsPlatform.PresentationLayer.csproj" />
+        <ProjectReference Include="..\MediaRatingsPlatform.BusinessLayer\MediaRatingsPlatform.BusinessLayer.csproj"/>
+        <ProjectReference Include="..\MediaRatingsPlatform.DataAccessLayer\MediaRatingsPlatform.DataAccessLayer.csproj"/>
+        <ProjectReference Include="..\MediaRatingsPlatform.SharedObjects\MediaRatingsPlatform.SharedObjects.csproj"/>
+        <ProjectReference Include="..\MediaRatingsPlatform.PresentationLayer\MediaRatingsPlatform.PresentationLayer.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Documentation\" />
+        <Folder Include="Documentation\"/>
     </ItemGroup>
 
 </Project>

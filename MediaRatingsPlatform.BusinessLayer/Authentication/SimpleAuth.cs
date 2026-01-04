@@ -1,11 +1,12 @@
-using MediaRatingsPlatform.Models;
+using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.Authentication;
 
 public class SimpleAuth : IAuth {
-    public string Auth(string token, string comparator) {
+    public string Auth(Token token, string comparator) {
         // TODO throw error when auth key is not authenticate
         throw new ApiNotImplementedException();
-        return "TEST";
+        ///Token? validatedToken = DB.GetToken(token);
+        //return username;
     }
 }

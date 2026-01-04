@@ -1,5 +1,5 @@
 using MediaRatingsPlatform.Authentication;
-using MediaRatingsPlatform.Models;
+using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
@@ -10,7 +10,7 @@ public class ListMediaEndpoint : SimpleAuth, IHttpEndpoint {
             Body = "DEBUG: ListMedia"
         };
         //success
-        string medias = ""; // includes requested list of media
+        var medias = ""; // includes requested list of media
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok,
             Body = medias
@@ -25,7 +25,7 @@ public class DisplayMediaEndpoint : SimpleAuth, IHttpEndpoint {
             Body = "DEBUG: DisplayMedia"
         };
         //success
-        string media = ""; // includes requested list of media
+        var media = ""; // includes requested list of media
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok,
             Body = media

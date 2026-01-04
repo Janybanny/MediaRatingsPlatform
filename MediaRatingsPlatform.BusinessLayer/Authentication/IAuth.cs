@@ -1,6 +1,7 @@
+using MediaRatingsPlatform.SharedObjects;
+
 namespace MediaRatingsPlatform.Authentication;
 
-public interface IAuth
-{
-    string Auth(string token, string comparator);
+public interface IAuth {
+    string Auth(Token token, string comparator);
 }

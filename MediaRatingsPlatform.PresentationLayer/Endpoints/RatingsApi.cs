@@ -1,5 +1,5 @@
 using MediaRatingsPlatform.Authentication;
-using MediaRatingsPlatform.Models;
+using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
@@ -51,7 +51,7 @@ public class DeleteRatingEndpoint : RatingAuth, IHttpEndpoint {
         //success
         return new HttpResponse {
             StatusCode = HttpStatusCode.NoContent
-       };
+        };
     }
 }
 

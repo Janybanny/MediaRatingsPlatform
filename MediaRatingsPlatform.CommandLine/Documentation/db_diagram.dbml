@@ -3,20 +3,20 @@
 // https://dbdiagram.io/d
 
 Table users {
-  id string [primary key]
-  username string
-  password string
+  username string [primary key]
+  password string [not null]
   favouriteGenre string
 }
 
 Table tokens {
-  token int [primary key]
-  
+  token string [primary key]
+  user string [ref:- users.username, not null]
+  validuntil timestamp [not null]
 }
 
 Table media {
   id int [primary key]
-  owner string [ref: > users.id]
+  owner string [ref: > users.username, not null]
   title string
   description string
   type mediaType [note: 'movie, series or game']
@@ -27,14 +27,14 @@ Table media {
 
 Table favourites {
   id int [primary key]
-  userId string [ref: > users.id]
-  mediaId int [ref: > media.id]
+  userId string [ref: > users.username, not null]
+  mediaId int [ref: > media.id, not null]
 }
 
 Table ratings {
   id int [primary key]
-  userId string [ref: > users.id]
-  mediaId int [ref: > media.id]
+  userId string [ref: > users.username, not null]
+  mediaId int [ref: > media.id, not null]
   created_at timestamp [not null]
   stars int [not null]
   comment string [not null]
@@ -43,6 +43,6 @@ Table ratings {
 
 Table likes {
   id int [primary key]
-  userId string [ref: > users.id]
-  ratingId int [ref: > ratings.id]
+  userId string [ref: > users.username, not null]
+  ratingId int [ref: > ratings.id, not null]
 }

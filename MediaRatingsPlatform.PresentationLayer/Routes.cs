@@ -3,11 +3,8 @@ using MediaRatingsPlatform.PresentationLayer.Endpoints;
 namespace MediaRatingsPlatform.PresentationLayer;
 
 public abstract class Routes {
-
-    public static IHttpEndpoint Route(HttpRequest request)
-    {
-        return request switch
-        {
+    public static IHttpEndpoint Route(HttpRequest request) {
+        return request switch {
             { Method: HttpMethod.Get, Path: ["api", "leaderboard"] } => new LeaderboardEndpoint(),
             { Method: HttpMethod.Get, Path: ["api", "media"] } => new ListMediaEndpoint(),
             { Method: HttpMethod.Post, Path: ["api", "media"] } => new CreateMediaEndpoint(),
@@ -28,7 +25,7 @@ public abstract class Routes {
             { Method: HttpMethod.Get, Path: ["api", "users", null, "recommendations"] } => new RecommendEndpoint(),
             { Method: HttpMethod.Post, Path: ["api", "users", "login"] } => new LoginEndpoint(),
             { Method: HttpMethod.Post, Path: ["api", "users", "register"] } => new RegisterEndpoint(),
-            _ => new BadRequest(),
+            _ => new BadRequest()
         };
     }
 }

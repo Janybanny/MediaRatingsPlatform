@@ -1,4 +1,4 @@
-namespace MediaRatingsPlatform.Models;
+namespace MediaRatingsPlatform.SharedObjects;
 
 public enum HttpStatusCode {
     Ok = 200,

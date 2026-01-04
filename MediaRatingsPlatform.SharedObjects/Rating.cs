@@ -1,7 +1,6 @@
-namespace MediaRatingsPlatform.Models;
+namespace MediaRatingsPlatform.SharedObjects;
 
-public class Rating
-{
+public class Rating : IModel {
     public int? Id { get; set; }
     public string? Owner { get; set; }
     public int? MediaId { get; set; }

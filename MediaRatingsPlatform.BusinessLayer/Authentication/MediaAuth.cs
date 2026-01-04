@@ -1,10 +1,9 @@
-using MediaRatingsPlatform.Models;
+using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.Authentication;
 
 public class MediaAuth : IAuth {
-    public string Auth(string token, string comparator)
-    {
+    public string Auth(Token token, string comparator) {
         throw new ApiNotImplementedException();
     }
 }
