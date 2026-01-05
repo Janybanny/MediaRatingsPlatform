@@ -3,6 +3,11 @@ namespace MediaRatingsPlatform.Test;
 internal class TestAuth {
     // TODO Test Auth
     [Test]
+    public void TestLogin() {
+        Assert.Pass();
+    }
+
+    [Test]
     public void TestNoAuth() {
         Assert.Pass();
     }

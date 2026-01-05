@@ -3,5 +3,6 @@ using MediaRatingsPlatform.SharedObjects;
 namespace MediaRatingsPlatform.Authentication;
 
 public interface IAuth {
-    string Auth(Token token, string comparator);
+    public int? UserId { get; set; }
+    void Auth(Token token, string comparator);
 }

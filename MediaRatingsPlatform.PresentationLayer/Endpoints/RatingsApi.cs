@@ -4,7 +4,7 @@ using MediaRatingsPlatform.SharedObjects;
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
 public class CreateRatingEndpoint : SimpleAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
             Body = "DEBUG: CreateRating"
@@ -17,7 +17,7 @@ public class CreateRatingEndpoint : SimpleAuth, IHttpEndpoint {
 }
 
 public class LikeRatingEndpoint : SimpleAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
             Body = "DEBUG: LikeRating"
@@ -30,7 +30,7 @@ public class LikeRatingEndpoint : SimpleAuth, IHttpEndpoint {
 }
 
 public class UpdateRatingEndpoint : RatingAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
             Body = "DEBUG: UpdateRating"
@@ -43,7 +43,7 @@ public class UpdateRatingEndpoint : RatingAuth, IHttpEndpoint {
 }
 
 public class DeleteRatingEndpoint : RatingAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
             Body = "DEBUG: DeleteRating"
@@ -56,7 +56,7 @@ public class DeleteRatingEndpoint : RatingAuth, IHttpEndpoint {
 }
 
 public class ConfirmCommentEndpoint : RatingAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
             Body = "DEBUG: ConfirmComment"

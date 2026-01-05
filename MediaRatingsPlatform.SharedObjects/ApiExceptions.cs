@@ -9,3 +9,5 @@ public class ApiNotImplementedException() : ApiException(HttpStatusCode.NotImple
 public class ApiKeyMissingException() : ApiException(HttpStatusCode.BadRequest) { }
 
 public class ApiBadLoginDataException() : ApiException(HttpStatusCode.Unauthorized) { }
+
+public class ApiUserAlreadyExistsException() : ApiException(HttpStatusCode.Conflict) { }

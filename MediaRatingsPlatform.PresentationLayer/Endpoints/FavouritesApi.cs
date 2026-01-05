@@ -4,7 +4,7 @@ using MediaRatingsPlatform.SharedObjects;
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
 public class UnFavouriteEndpoint : UserAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         throw new ApiNotImplementedException();
 
         //success
@@ -15,7 +15,7 @@ public class UnFavouriteEndpoint : UserAuth, IHttpEndpoint {
 }
 
 public class FavouriteEndpoint : UserAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         throw new ApiNotImplementedException();
 
         //success

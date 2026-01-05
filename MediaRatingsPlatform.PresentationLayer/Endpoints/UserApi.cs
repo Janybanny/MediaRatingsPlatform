@@ -4,7 +4,7 @@ using MediaRatingsPlatform.SharedObjects;
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
 public class DisplayProfileEndpoint : UserAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
             Body = "DEBUG: DisplayProfile"
@@ -19,7 +19,7 @@ public class DisplayProfileEndpoint : UserAuth, IHttpEndpoint {
 }
 
 public class UpdateProfileEndpoint : UserAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
             Body = "DEBUG: UpdateProfile"
@@ -32,7 +32,7 @@ public class UpdateProfileEndpoint : UserAuth, IHttpEndpoint {
 }
 
 public class DisplayRatingsEndpoint : UserAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
             Body = "DEBUG: DisplayRatings"
@@ -47,7 +47,7 @@ public class DisplayRatingsEndpoint : UserAuth, IHttpEndpoint {
 }
 
 public class DisplayFavouritesEndpoint : UserAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
             Body = "DEBUG: DisplayFavourites"

@@ -4,7 +4,7 @@ using MediaRatingsPlatform.SharedObjects;
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
 public class ListMediaEndpoint : SimpleAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
             Body = "DEBUG: ListMedia"
@@ -19,7 +19,7 @@ public class ListMediaEndpoint : SimpleAuth, IHttpEndpoint {
 }
 
 public class DisplayMediaEndpoint : SimpleAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
             Body = "DEBUG: DisplayMedia"
@@ -34,7 +34,7 @@ public class DisplayMediaEndpoint : SimpleAuth, IHttpEndpoint {
 }
 
 public class CreateMediaEndpoint : SimpleAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
             Body = "DEBUG: CreateMedia"
@@ -47,7 +47,7 @@ public class CreateMediaEndpoint : SimpleAuth, IHttpEndpoint {
 }
 
 public class DeleteMediaEndpoint : MediaAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
             Body = "DEBUG: DeleteMedia"
@@ -60,7 +60,7 @@ public class DeleteMediaEndpoint : MediaAuth, IHttpEndpoint {
 }
 
 public class UpdateMediaEndpoint : MediaAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
             Body = "DEBUG: UpdateMedia"

@@ -4,7 +4,7 @@ using MediaRatingsPlatform.SharedObjects;
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
 public class LeaderboardEndpoint : SimpleAuth, IHttpEndpoint {
-    public HttpResponse Handle(HttpRequest request, string username) {
+    public HttpResponse Handle(HttpRequest request) {
         //SUCCESS
         var returnvalue = ""; // includes leaderboard list
         return new HttpResponse {

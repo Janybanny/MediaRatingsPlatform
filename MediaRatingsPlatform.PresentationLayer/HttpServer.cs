@@ -24,10 +24,9 @@ public class HttpServer {
             // Fulfills request and catches errors, which return API Errors
             HttpResponse response;
             try {
-                var username = endpoint.Auth(new Token {Id = request.GetToken()}, request.GetComparator());
-                response = endpoint.Handle(request, username);
-            }
-            catch (ApiException ex) {
+                endpoint.Auth(new Token { Id = request.GetToken() }, request.GetComparator());
+                response = endpoint.Handle(request);
+            } catch (ApiException ex) {
                 response = new HttpResponse { StatusCode = ex.StatusCode };
             }
 

@@ -69,5 +69,12 @@ Failed because it didn't compile correctly (no idea what exactly went wrong, but
 
 - Added json parsing in Presentation Layer to create Objects which fit the models
 - Finished Database Design
+- Added Database Connection, Creation and Repository Model in Database
+
+## 5.1.2025 11:30
+
 -
-    - Added Database Connection, Creation and Repository Model in Database
+
+USEFUL SQL STATEMENTS
+
+"INSERT INTO table(text, username) VALUES (@text, @username) RETURNING id"

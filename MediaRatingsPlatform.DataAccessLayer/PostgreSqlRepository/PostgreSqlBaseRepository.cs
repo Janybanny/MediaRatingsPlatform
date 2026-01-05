@@ -1,6 +1,6 @@
 using Npgsql;
 
-namespace MediaRatingsPlatform.DataAccessLayer;
+namespace MediaRatingsPlatform.DataAccessLayer.PostgreSqlRepository;
 
 public class PostgreSqlBaseRepository {
     protected static T ExecuteWithDbConnection<T>(Func<NpgsqlConnection, T> command) {
@@ -8,8 +8,7 @@ public class PostgreSqlBaseRepository {
             using var connection = new NpgsqlConnection(DatabaseCredentials.ConnectionString);
             connection.Open();
             return command(connection);
-        }
-        catch (NpgsqlException e) {
+        } catch (NpgsqlException e) {
             throw new DataAccessFailedException("Could not connect to database", e);
         }
     }

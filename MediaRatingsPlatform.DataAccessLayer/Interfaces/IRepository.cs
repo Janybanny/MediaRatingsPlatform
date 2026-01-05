@@ -1,7 +1,5 @@
 using MediaRatingsPlatform.SharedObjects;
 
-namespace MediaRatingsPlatform.DataAccessLayer;
+namespace MediaRatingsPlatform.DataAccessLayer.Interfaces;
 
-public interface IRepository<T> where T : IModel {
-    
-}
+public interface IRepository<T> where T : IModel { }

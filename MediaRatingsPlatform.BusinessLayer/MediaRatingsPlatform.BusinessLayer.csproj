@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\MediaRatingsPlatform.DataAccessLayer\MediaRatingsPlatform.DataAccessLayer.csproj"/>
         <ProjectReference Include="..\MediaRatingsPlatform.SharedObjects\MediaRatingsPlatform.SharedObjects.csproj"/>
     </ItemGroup>
 
