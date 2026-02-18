@@ -71,9 +71,12 @@ Failed because it didn't compile correctly (no idea what exactly went wrong, but
 - Finished Database Design
 - Added Database Connection, Creation and Repository Model in Database
 
-## 5.1.2025 11:30
+## 5.1.2025 14h
 
--
+- Added Authentication functionality in Business Logic Layer
+- Added Token and User Database Repository Functionality
+- Refactored to use Dependency Injection for the Database Repositories via a global static class (horrible, will probably be changed later when the Bll has more of a concept to it)
+- Added Tests for implemented Authentication Methods
 
 USEFUL SQL STATEMENTS
 

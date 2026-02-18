@@ -1,5 +1,6 @@
 using MediaRatingsPlatform.PresentationLayer;
 using MediaRatingsPlatform.PresentationLayer.Endpoints;
+using NSubstitute;
 using HttpMethod = MediaRatingsPlatform.PresentationLayer.HttpMethod;
 
 namespace MediaRatingsPlatform.Test;
@@ -9,7 +10,7 @@ internal class TestRoutes {
     public void TestValidRoute() {
         List<string?> route = ["api", "leaderboard"];
         var method = HttpMethod.Get;
-        var result = Routes.Route(new HttpRequest { Method = method, Path = route });
+        var result = Routes.Route(new HttpRequest { Method = method, Path = route }, Substitute.For<IDependencies>());
         Assert.That(result, Is.TypeOf<LeaderboardEndpoint>());
     }
 
@@ -17,7 +18,7 @@ internal class TestRoutes {
     public void TestInvalidRoute() {
         List<string?> route = ["api", "invalidroute", null];
         var method = HttpMethod.Get;
-        var result = Routes.Route(new HttpRequest { Method = method, Path = route });
+        var result = Routes.Route(new HttpRequest { Method = method, Path = route }, Substitute.For<IDependencies>());
         Assert.That(result, Is.TypeOf<BadRequest>());
     }
 
@@ -25,7 +26,7 @@ internal class TestRoutes {
     public void TestInvalidMethodOnRoute() {
         List<string?> route = ["api", "leaderboard"];
         var method = HttpMethod.Delete;
-        var result = Routes.Route(new HttpRequest { Method = method, Path = route });
+        var result = Routes.Route(new HttpRequest { Method = method, Path = route }, Substitute.For<IDependencies>());
         Assert.That(result, Is.TypeOf<BadRequest>());
     }
 }

@@ -6,9 +6,7 @@ using HttpMethod = MediaRatingsPlatform.PresentationLayer.HttpMethod;
 
 namespace MediaRatingsPlatform.Test;
 
-public class TestHttpRequest {
-    // TODO not tested because HttpListenerRequest is private and I don't know how to add a wrapper
-
+public class TestParsingHttpRequests {
     [Test]
     public void TestValidCreateHttpRequest() {
         var request = Substitute.For<IHttpListenerRequest>();
@@ -23,7 +21,7 @@ public class TestHttpRequest {
         var result = CreateHttpRequest.CreateRequest(request);
 
         Assert.That(result.Path, Is.EqualTo(["api", "media", null, "rate"]));
-        Assert.That(result.PathId, Is.EqualTo("2"));
+        Assert.That(result.PathId, Is.EqualTo(2));
         Assert.That(result.Method, Is.EqualTo(HttpMethod.Get));
         Assert.That(result.Body, Is.EqualTo("TESTBODY"));
         Assert.That(result.Headers,
@@ -31,7 +29,7 @@ public class TestHttpRequest {
                 { { "Authorization", "Bearer testtoken" }, { "testkey", "testvalue" } }));
         Assert.That(result.QueryParams, Is.EqualTo(new Dictionary<string, string> { { "key", "value" } }));
         Assert.That(result.GetToken(), Is.EqualTo("testtoken"));
-        Assert.That(result.GetComparator(), Is.EqualTo("2"));
+        Assert.That(result.GetComparator(), Is.EqualTo(2));
     }
 
     [Test]
@@ -49,14 +47,14 @@ public class TestHttpRequest {
         var result = CreateHttpRequest.CreateRequest(request);
 
         Assert.That(result.Path, Is.EqualTo(new List<string>()));
-        Assert.That(result.PathId, Is.EqualTo(""));
+        Assert.That(result.PathId, Is.EqualTo(null));
         Assert.That(result.Method, Is.EqualTo(HttpMethod.Get));
         Assert.That(result.Body, Is.EqualTo("{body:\ntest]"));
         Assert.That(result.Headers,
             Is.EqualTo(new Dictionary<string, string> { { "Authorization", "Bearrer testtoken" } }));
         Assert.That(result.QueryParams, Is.EqualTo(new Dictionary<string, string>()));
         Assert.That(result.GetToken(), Is.EqualTo(""));
-        Assert.That(result.GetComparator(), Is.EqualTo(""));
+        Assert.That(result.GetComparator(), Is.EqualTo(null));
     }
 
     [Test]
@@ -74,12 +72,12 @@ public class TestHttpRequest {
         var result = CreateHttpRequest.CreateRequest(request);
 
         Assert.That(result.Path, Is.EqualTo(new List<string>()));
-        Assert.That(result.PathId, Is.EqualTo("0"));
+        Assert.That(result.PathId, Is.EqualTo(0));
         Assert.That(result.Method, Is.EqualTo(HttpMethod.Get));
         Assert.That(result.Body, Is.EqualTo(""));
         Assert.That(result.Headers, Is.EqualTo(new Dictionary<string, string> { { "one", "two" } }));
         Assert.That(result.QueryParams, Is.EqualTo(new Dictionary<string, string>()));
         Assert.That(result.GetToken(), Is.EqualTo(""));
-        Assert.That(result.GetComparator(), Is.EqualTo("0"));
+        Assert.That(result.GetComparator(), Is.EqualTo(0));
     }
 }

@@ -6,11 +6,11 @@ public class HttpRequest {
     public Dictionary<string, string> QueryParams { get; set; } = [];
     public Dictionary<string, string> Headers { get; set; } = [];
     public string? Body { get; set; }
-    public string PathId { get; set; } = "";
+    public int? PathId { get; set; }
 
     public string GetToken() {
         var token = "";
-        string value;
+        string? value;
         if (Headers.TryGetValue("Authorization", out value))
             if (value.Length > 7)
                 if (value.Substring(0, 7) == "Bearer ")
@@ -19,7 +19,7 @@ public class HttpRequest {
         return token;
     }
 
-    public string GetComparator() {
+    public int? GetComparator() {
         return PathId;
     }
 }

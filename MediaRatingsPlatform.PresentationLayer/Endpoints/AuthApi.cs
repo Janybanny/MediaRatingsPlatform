@@ -4,13 +4,15 @@ using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
-public class LoginEndpoint : NoAuth, IHttpEndpoint {
+public class LoginEndpoint(IDependencies dependencies) : NoAuth, IHttpEndpoint {
+    private readonly IDependencies _dependencies = dependencies;
+
     public HttpResponse Handle(HttpRequest request) {
         // check data
-        var logInData = request.Body != null ? JsonSerializer.Deserialize<User>(request.Body) : null;
+        var logInData = request.Body != null ? JsonSerializer.Deserialize<User>(request.Body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) : null;
         if (logInData?.Username == null || logInData.Password == null) throw new ApiKeyMissingException();
 
-        var token = Authenticator.Login(logInData);
+        var token = _dependencies.GetAuth().Login(logInData);
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok,
             Body = token
@@ -18,13 +20,15 @@ public class LoginEndpoint : NoAuth, IHttpEndpoint {
     }
 }
 
-public class RegisterEndpoint : NoAuth, IHttpEndpoint {
+public class RegisterEndpoint(IDependencies dependencies) : NoAuth, IHttpEndpoint {
+    private readonly IDependencies _dependencies = dependencies;
+
     public HttpResponse Handle(HttpRequest request) {
         // check data
-        var logInData = request.Body != null ? JsonSerializer.Deserialize<User>(request.Body) : null;
+        var logInData = request.Body != null ? JsonSerializer.Deserialize<User>(request.Body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) : null;
         if (logInData?.Username == null || logInData.Password == null) throw new ApiKeyMissingException();
 
-        Authenticator.Register(logInData);
+        _dependencies.GetAuth().Register(logInData);
         return new HttpResponse {
             StatusCode = HttpStatusCode.Created
         };

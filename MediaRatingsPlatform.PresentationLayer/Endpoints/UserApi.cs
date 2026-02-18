@@ -3,7 +3,7 @@ using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
-public class DisplayProfileEndpoint : UserAuth, IHttpEndpoint {
+public class DisplayProfileEndpoint(IDependencies dependencies) : UserAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
@@ -18,7 +18,7 @@ public class DisplayProfileEndpoint : UserAuth, IHttpEndpoint {
     }
 }
 
-public class UpdateProfileEndpoint : UserAuth, IHttpEndpoint {
+public class UpdateProfileEndpoint(IDependencies dependencies) : UserAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
@@ -31,7 +31,9 @@ public class UpdateProfileEndpoint : UserAuth, IHttpEndpoint {
     }
 }
 
-public class DisplayRatingsEndpoint : UserAuth, IHttpEndpoint {
+public class DisplayRatingsEndpoint(IDependencies dependencies) : UserAuth, IHttpEndpoint {
+    private IDependencies _dependencies = dependencies;
+
     public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
@@ -46,7 +48,9 @@ public class DisplayRatingsEndpoint : UserAuth, IHttpEndpoint {
     }
 }
 
-public class DisplayFavouritesEndpoint : UserAuth, IHttpEndpoint {
+public class DisplayFavouritesEndpoint(IDependencies dependencies) : UserAuth, IHttpEndpoint {
+    private IDependencies _dependencies = dependencies;
+
     public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,

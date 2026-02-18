@@ -1,8 +1,9 @@
+using MediaRatingsPlatform.DataAccessLayer.Interfaces;
 using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.Authentication;
 
 public interface IAuth {
     public int? UserId { get; set; }
-    void Auth(Token token, string comparator);
+    void Auth(Token token, int? comparator, IRepositoryFactory repositoryFactory);
 }

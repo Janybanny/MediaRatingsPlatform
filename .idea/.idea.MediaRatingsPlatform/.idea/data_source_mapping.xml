@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/MediaRatingsPlatform.DataAccessLayer/PostgreSqlRepository/PostgreSqlTokenRepository.cs" value="8d6fff38-647d-4189-8084-9435cdd2bf1e" />
+    <file url="file://$PROJECT_DIR$/MediaRatingsPlatform.DataAccessLayer/PostgreSqlRepository/PostgreSqlUserRepository.cs" value="8d6fff38-647d-4189-8084-9435cdd2bf1e" />
+  </component>
+</project>

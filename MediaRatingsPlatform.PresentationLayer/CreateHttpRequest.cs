@@ -18,16 +18,16 @@ public class CreateHttpRequest {
         formattedRequest.Body = new StreamReader(request.InputStream).ReadToEnd();
         for (var i = 0; i < formattedRequest.Path.Count; i++) {
             if (!int.TryParse(formattedRequest.Path[i], out _)) continue;
-            if (formattedRequest.PathId == "") {
-                formattedRequest.PathId = formattedRequest.Path[i]!;
+
+            if (formattedRequest.PathId == null) {
+                int.TryParse(formattedRequest.Path[i], out var number);
+                formattedRequest.PathId = number;
                 formattedRequest.Path[i] = null;
-            }
-            else {
+            } else {
                 formattedRequest.Path = new List<string?>();
                 break;
             }
         }
-
         return formattedRequest;
     }
 }

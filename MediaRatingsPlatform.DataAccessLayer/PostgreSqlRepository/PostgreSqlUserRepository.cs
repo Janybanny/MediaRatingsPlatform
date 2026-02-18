@@ -5,28 +5,32 @@ using Npgsql;
 
 namespace MediaRatingsPlatform.DataAccessLayer.PostgreSqlRepository;
 
-public class PostgreSqlUserRepository : PostgreSqlBaseRepository, IUserRepository {
+public class PostgreSqlUserRepository(string connectionString) : PostgreSqlBaseRepository(connectionString), IUserRepository {
     public User? GetUser(User input) {
         return ExecuteWithDbConnection(connection => {
             IDataRecord? record = null;
             // uses Id, falls back to Username if no Id provided
             if (input.Id == null) {
                 using var cmd = new NpgsqlCommand("SELECT * FROM users WHERE username=@username", connection);
-                cmd.Parameters.AddWithValue("username", input!);
+                cmd.Parameters.AddWithValue("username", input.Username!);
                 using var reader = cmd.ExecuteReader();
                 if (reader.Read()) record = reader;
+                return record == null
+                    ? null
+                    : new User {
+                        Id = Convert.ToInt32(record["userid"]), Username = Convert.ToString(record["username"]), Password = Convert.ToString(record["password"]), EMail = Convert.ToString(record["email"]), FavouriteGenre = Convert.ToString(record["favouritegenre"])
+                    };
             } else {
                 using var cmd = new NpgsqlCommand("SELECT * FROM users WHERE userid=@userid", connection);
                 cmd.Parameters.AddWithValue("token", input.Id!);
                 using var reader = cmd.ExecuteReader();
                 if (reader.Read()) record = reader;
+                return record == null
+                    ? null
+                    : new User {
+                        Id = Convert.ToInt32(record["userid"]), Username = Convert.ToString(record["username"]), Password = Convert.ToString(record["password"]), EMail = Convert.ToString(record["email"]), FavouriteGenre = Convert.ToString(record["favouritegenre"])
+                    };
             }
-
-            return record == null
-                ? null
-                : new User {
-                    Id = Convert.ToInt32(record["userid"]), Username = Convert.ToString(record["username"]), Password = Convert.ToString(record["password"]), EMail = Convert.ToString(record["email"]), FavouriteGenre = Convert.ToString(record["favouritegenre"])
-                };
         });
     }
 

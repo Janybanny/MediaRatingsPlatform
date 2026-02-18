@@ -1,14 +1,20 @@
+using MediaRatingsPlatform.DataAccessLayer.Interfaces;
 using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.Authentication;
 
 public class SimpleAuth : IAuth {
-    public int? UserId { get; set; } = null;
+    public int? UserId { get; set; }
 
-    public void Auth(Token token, string comparator) {
-        // TODO throw error when auth key is not authenticate
-        throw new ApiNotImplementedException();
-        ///Token? validatedToken = DB.GetToken(token);
-        //return username;
+    public void Auth(Token token, int? comparator, IRepositoryFactory repositoryFactory) {
+        // throws error when token is not valid
+        var db = repositoryFactory.CreateTokenRepository();
+        var verifiedToken = db.GetToken(token);
+        if (verifiedToken == null) throw new ApiBadLoginDataException();
+        if (verifiedToken.ValidUntil < DateTime.Now) {
+            db.DeleteToken(verifiedToken);
+            throw new ApiTokenExpiredException();
+        }
+        UserId = verifiedToken.UserId;
     }
 }

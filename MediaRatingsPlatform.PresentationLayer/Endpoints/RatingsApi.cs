@@ -3,7 +3,7 @@ using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
-public class CreateRatingEndpoint : SimpleAuth, IHttpEndpoint {
+public class CreateRatingEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
@@ -16,7 +16,7 @@ public class CreateRatingEndpoint : SimpleAuth, IHttpEndpoint {
     }
 }
 
-public class LikeRatingEndpoint : SimpleAuth, IHttpEndpoint {
+public class LikeRatingEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
@@ -29,7 +29,7 @@ public class LikeRatingEndpoint : SimpleAuth, IHttpEndpoint {
     }
 }
 
-public class UpdateRatingEndpoint : RatingAuth, IHttpEndpoint {
+public class UpdateRatingEndpoint(IDependencies dependencies) : RatingAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
@@ -42,7 +42,9 @@ public class UpdateRatingEndpoint : RatingAuth, IHttpEndpoint {
     }
 }
 
-public class DeleteRatingEndpoint : RatingAuth, IHttpEndpoint {
+public class DeleteRatingEndpoint(IDependencies dependencies) : RatingAuth, IHttpEndpoint {
+    private IDependencies _dependencies = dependencies;
+
     public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
@@ -55,7 +57,9 @@ public class DeleteRatingEndpoint : RatingAuth, IHttpEndpoint {
     }
 }
 
-public class ConfirmCommentEndpoint : RatingAuth, IHttpEndpoint {
+public class ConfirmCommentEndpoint(IDependencies dependencies) : RatingAuth, IHttpEndpoint {
+    private IDependencies _dependencies = dependencies;
+
     public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,

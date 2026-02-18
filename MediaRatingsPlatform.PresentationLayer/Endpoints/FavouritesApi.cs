@@ -3,7 +3,9 @@ using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
-public class UnFavouriteEndpoint : UserAuth, IHttpEndpoint {
+public class UnFavouriteEndpoint(IDependencies dependencies) : UserAuth, IHttpEndpoint {
+    private IDependencies _dependencies = dependencies;
+
     public HttpResponse Handle(HttpRequest request) {
         throw new ApiNotImplementedException();
 
@@ -14,7 +16,9 @@ public class UnFavouriteEndpoint : UserAuth, IHttpEndpoint {
     }
 }
 
-public class FavouriteEndpoint : UserAuth, IHttpEndpoint {
+public class FavouriteEndpoint(IDependencies dependencies) : UserAuth, IHttpEndpoint {
+    private IDependencies _dependencies = dependencies;
+
     public HttpResponse Handle(HttpRequest request) {
         throw new ApiNotImplementedException();
 

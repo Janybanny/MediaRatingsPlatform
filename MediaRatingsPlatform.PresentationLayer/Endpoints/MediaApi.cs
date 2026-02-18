@@ -3,7 +3,9 @@ using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
-public class ListMediaEndpoint : SimpleAuth, IHttpEndpoint {
+public class ListMediaEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEndpoint {
+    private IDependencies _dependencies = dependencies;
+
     public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
@@ -18,7 +20,9 @@ public class ListMediaEndpoint : SimpleAuth, IHttpEndpoint {
     }
 }
 
-public class DisplayMediaEndpoint : SimpleAuth, IHttpEndpoint {
+public class DisplayMediaEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEndpoint {
+    private IDependencies _dependencies = dependencies;
+
     public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
@@ -33,7 +37,9 @@ public class DisplayMediaEndpoint : SimpleAuth, IHttpEndpoint {
     }
 }
 
-public class CreateMediaEndpoint : SimpleAuth, IHttpEndpoint {
+public class CreateMediaEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEndpoint {
+    private IDependencies _dependencies = dependencies;
+
     public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
@@ -46,7 +52,9 @@ public class CreateMediaEndpoint : SimpleAuth, IHttpEndpoint {
     }
 }
 
-public class DeleteMediaEndpoint : MediaAuth, IHttpEndpoint {
+public class DeleteMediaEndpoint(IDependencies dependencies) : MediaAuth, IHttpEndpoint {
+    private IDependencies _dependencies = dependencies;
+
     public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
@@ -59,7 +67,9 @@ public class DeleteMediaEndpoint : MediaAuth, IHttpEndpoint {
     }
 }
 
-public class UpdateMediaEndpoint : MediaAuth, IHttpEndpoint {
+public class UpdateMediaEndpoint(IDependencies dependencies) : MediaAuth, IHttpEndpoint {
+    private IDependencies _dependencies = dependencies;
+
     public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,

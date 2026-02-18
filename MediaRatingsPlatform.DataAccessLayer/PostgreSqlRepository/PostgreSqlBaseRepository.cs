@@ -2,10 +2,12 @@ using Npgsql;
 
 namespace MediaRatingsPlatform.DataAccessLayer.PostgreSqlRepository;
 
-public class PostgreSqlBaseRepository {
-    protected static T ExecuteWithDbConnection<T>(Func<NpgsqlConnection, T> command) {
+public abstract class PostgreSqlBaseRepository(string connectionString) {
+    private readonly string _connectionString = connectionString;
+
+    protected T ExecuteWithDbConnection<T>(Func<NpgsqlConnection, T> command) {
         try {
-            using var connection = new NpgsqlConnection(DatabaseCredentials.ConnectionString);
+            using var connection = new NpgsqlConnection(_connectionString);
             connection.Open();
             return command(connection);
         } catch (NpgsqlException e) {

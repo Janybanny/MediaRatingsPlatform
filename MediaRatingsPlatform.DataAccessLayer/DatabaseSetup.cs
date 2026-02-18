@@ -57,9 +57,9 @@ public static class DatabaseSetup {
         );
         """;
 
-    public static void EnsureTablesExist() {
+    public static void EnsureTablesExist(string connectionString) {
         try {
-            using var connection = new NpgsqlConnection(DatabaseCredentials.ConnectionString);
+            using var connection = new NpgsqlConnection(connectionString);
             connection.Open();
             using var cmd = new NpgsqlCommand(CreateTablesCommand, connection);
             cmd.ExecuteNonQuery();
