@@ -1,7 +1,7 @@
 using MediaRatingsPlatform.DataAccessLayer.Interfaces;
 using MediaRatingsPlatform.SharedObjects;
 
-namespace MediaRatingsPlatform.Authentication;
+namespace MediaRatingsPlatform.BusinessLayer.Authentication;
 
 public class NoAuth : IAuth {
     public int? UserId { get; set; } = null;

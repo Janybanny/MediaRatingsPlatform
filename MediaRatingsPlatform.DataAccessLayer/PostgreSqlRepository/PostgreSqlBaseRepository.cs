@@ -1,3 +1,4 @@
+using MediaRatingsPlatform.SharedObjects;
 using Npgsql;
 
 namespace MediaRatingsPlatform.DataAccessLayer.PostgreSqlRepository;
@@ -11,7 +12,8 @@ public abstract class PostgreSqlBaseRepository(string connectionString) {
             connection.Open();
             return command(connection);
         } catch (NpgsqlException e) {
-            throw new DataAccessFailedException("Could not connect to database", e);
+            Console.WriteLine($"DBError: {e.Message}");
+            throw new ApiDatabaseException();
         }
     }
 }

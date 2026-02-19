@@ -1,8 +1,8 @@
+using MediaRatingsPlatform.BusinessLayer.Interfaces;
 using MediaRatingsPlatform.DataAccessLayer.Interfaces;
-using MediaRatingsPlatform.Interfaces;
 using MediaRatingsPlatform.SharedObjects;
 
-namespace MediaRatingsPlatform;
+namespace MediaRatingsPlatform.BusinessLayer;
 
 public class Authenticator(IRepositoryFactory database) : IAuthenticator {
     private readonly IRepositoryFactory _database = database;

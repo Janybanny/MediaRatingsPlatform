@@ -1,3 +1,4 @@
+using MediaRatingsPlatform.SharedObjects;
 using Npgsql;
 
 namespace MediaRatingsPlatform.DataAccessLayer;
@@ -64,7 +65,8 @@ public static class DatabaseSetup {
             using var cmd = new NpgsqlCommand(CreateTablesCommand, connection);
             cmd.ExecuteNonQuery();
         } catch (NpgsqlException e) {
-            throw new DataAccessFailedException("Could not connect to database", e);
+            Console.WriteLine($"DBError: {e.Message}");
+            throw new ApiBadLoginDataException();
         }
     }
 }

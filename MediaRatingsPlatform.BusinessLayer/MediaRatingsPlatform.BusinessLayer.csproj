@@ -4,7 +4,7 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>MediaRatingsPlatform</RootNamespace>
+        <RootNamespace>MediaRatingsPlatform.BusinessLayer</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

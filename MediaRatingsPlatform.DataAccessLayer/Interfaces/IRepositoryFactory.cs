@@ -5,4 +5,5 @@ public interface IRepositoryFactory {
     public ITokenRepository CreateTokenRepository();
     public IRatingRepository CreateRatingRepository();
     public IMediaRepository CreateMediaRepository();
+    public IFavouriteRepository CreateFavouriteRepository();
 }

@@ -1,4 +1,4 @@
-using MediaRatingsPlatform.Authentication;
+using MediaRatingsPlatform.BusinessLayer.Authentication;
 
 namespace MediaRatingsPlatform.PresentationLayer;
 

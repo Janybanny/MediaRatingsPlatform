@@ -78,6 +78,16 @@ Failed because it didn't compile correctly (no idea what exactly went wrong, but
 - Refactored to use Dependency Injection for the Database Repositories via a global static class (horrible, will probably be changed later when the Bll has more of a concept to it)
 - Added Tests for implemented Authentication Methods
 
+## 18.2.2025 6h
+
+- Heute und Gestern bisschen Cleanup, damit ich das noch fertig machen kann
+- Implemented Updating User Profiles
+
 USEFUL SQL STATEMENTS
 
 "INSERT INTO table(text, username) VALUES (@text, @username) RETURNING id"
+
+## 19.2.2025
+
+- Finale checklist erstellt an todos und was noch implementiert werden muss (merge aus Spec und Checklist aus Moodle)
+- Added favouritesManager with existing workflow

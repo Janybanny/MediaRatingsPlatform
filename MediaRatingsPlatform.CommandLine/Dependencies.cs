@@ -1,6 +1,7 @@
+using MediaRatingsPlatform.BusinessLayer;
+using MediaRatingsPlatform.BusinessLayer.Interfaces;
 using MediaRatingsPlatform.DataAccessLayer.Interfaces;
 using MediaRatingsPlatform.DataAccessLayer.PostgreSqlRepository;
-using MediaRatingsPlatform.Interfaces;
 using MediaRatingsPlatform.PresentationLayer;
 
 namespace MediaRatingsPlatform;
@@ -16,11 +17,15 @@ public class Dependencies(string dbConnectionString) : IDependencies {
     public IAuthenticator GetAuth() {
         return new Authenticator(_database);
     }
-    /*
+
     public IUserManager GetUserManager() {
         return new UserManager(_database);
     }
 
+    public IFavouriteManager GetFavouriteManager() {
+        return new FavouriteManager(_database);
+    }
+    /*
     public IMediaManager GetMediaManager() {
         return new MediaManager(_database);
     }

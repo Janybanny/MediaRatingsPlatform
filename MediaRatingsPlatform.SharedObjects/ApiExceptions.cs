@@ -17,3 +17,5 @@ public class ApiItemDoesNotExistException() : ApiException(HttpStatusCode.NotFou
 public class ApiBadLoginDataException() : ApiException(HttpStatusCode.Unauthorized) { }
 
 public class ApiTokenExpiredException() : ApiException(HttpStatusCode.Unauthorized) { }
+
+public class ApiDatabaseException() : ApiException(HttpStatusCode.InternalServerError) { }

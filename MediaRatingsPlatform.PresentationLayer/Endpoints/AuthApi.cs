@@ -1,5 +1,5 @@
 using System.Text.Json;
-using MediaRatingsPlatform.Authentication;
+using MediaRatingsPlatform.BusinessLayer.Authentication;
 using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;

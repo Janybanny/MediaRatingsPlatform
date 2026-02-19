@@ -1,30 +1,35 @@
-using MediaRatingsPlatform.Authentication;
+using System.Text.Json;
+using MediaRatingsPlatform.BusinessLayer.Authentication;
 using MediaRatingsPlatform.SharedObjects;
 
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
 public class DisplayProfileEndpoint(IDependencies dependencies) : UserAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
-        return new HttpResponse {
-            StatusCode = HttpStatusCode.NotImplemented,
-            Body = "DEBUG: DisplayProfile"
+        var userdata = new User {
+            Id = UserId
         };
-        //success
-        var user = ""; // includes user profile
+        userdata = dependencies.GetUserManager().GetProfile(userdata);
+        if (userdata == null)
+            return new HttpResponse {
+                StatusCode = HttpStatusCode.NotFound
+            };
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok,
-            Body = user
+            Body = JsonSerializer.Serialize(userdata)
         };
     }
 }
 
 public class UpdateProfileEndpoint(IDependencies dependencies) : UserAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
-        return new HttpResponse {
-            StatusCode = HttpStatusCode.NotImplemented,
-            Body = "DEBUG: UpdateProfile"
-        };
-        //success
+        var userdata = request.Body != null ? JsonSerializer.Deserialize<User>(request.Body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) : null;
+        if (userdata == null)
+            return new HttpResponse {
+                StatusCode = HttpStatusCode.BadRequest
+            };
+        userdata.Id = UserId;
+        dependencies.GetUserManager().UpdateProfile(userdata);
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok
         };
@@ -32,8 +37,6 @@ public class UpdateProfileEndpoint(IDependencies dependencies) : UserAuth, IHttp
 }
 
 public class DisplayRatingsEndpoint(IDependencies dependencies) : UserAuth, IHttpEndpoint {
-    private IDependencies _dependencies = dependencies;
-
     public HttpResponse Handle(HttpRequest request) {
         return new HttpResponse {
             StatusCode = HttpStatusCode.NotImplemented,
@@ -49,18 +52,11 @@ public class DisplayRatingsEndpoint(IDependencies dependencies) : UserAuth, IHtt
 }
 
 public class DisplayFavouritesEndpoint(IDependencies dependencies) : UserAuth, IHttpEndpoint {
-    private IDependencies _dependencies = dependencies;
-
     public HttpResponse Handle(HttpRequest request) {
-        return new HttpResponse {
-            StatusCode = HttpStatusCode.NotImplemented,
-            Body = "DEBUG: DisplayFavourites"
-        };
-        //success
-        var favourites = ""; // includes user favourites
+        var favourites = dependencies.GetFavouriteManager().GetFavourites(new User {Id = UserId});
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok,
-            Body = favourites
+            Body = JsonSerializer.Serialize(favourites)
         };
     }
 }

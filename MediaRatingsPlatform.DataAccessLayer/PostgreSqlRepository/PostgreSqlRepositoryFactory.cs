@@ -2,26 +2,24 @@ using MediaRatingsPlatform.DataAccessLayer.Interfaces;
 
 namespace MediaRatingsPlatform.DataAccessLayer.PostgreSqlRepository;
 
-public class PostgreSqlRepositoryFactory : IRepositoryFactory {
-    private readonly string _connectionString;
-
-    public PostgreSqlRepositoryFactory(string connectionString) {
-        _connectionString = connectionString;
-    }
-
+public class PostgreSqlRepositoryFactory(string connectionString) : IRepositoryFactory {
     public IUserRepository CreateUserRepository() {
-        return new PostgreSqlUserRepository(_connectionString);
+        return new PostgreSqlUserRepository(connectionString);
     }
 
     public ITokenRepository CreateTokenRepository() {
-        return new PostgreSqlTokenRepository(_connectionString);
+        return new PostgreSqlTokenRepository(connectionString);
     }
 
     public IRatingRepository CreateRatingRepository() {
-        return new PostgreSqlRatingRepository(_connectionString);
+        return new PostgreSqlRatingRepository(connectionString);
     }
 
     public IMediaRepository CreateMediaRepository() {
-        return new PostgreSqlMediaRepository(_connectionString);
+        return new PostgreSqlMediaRepository(connectionString);
+    }
+
+    public IFavouriteRepository CreateFavouriteRepository() {
+        return new PostgreSqlFavouriteRepository(connectionString);
     }
 }
