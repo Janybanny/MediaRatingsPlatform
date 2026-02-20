@@ -91,3 +91,8 @@ USEFUL SQL STATEMENTS
 
 - Finale checklist erstellt an todos und was noch implementiert werden muss (merge aus Spec und Checklist aus Moodle)
 - Added favouritesManager with existing workflow
+
+## 20.2.2025
+
+- Added Media CRUD
+- Thoughts about adding genres. Current best idea is arrays in postgres, which are very ugly, but don't require another table (might also do another table because of recommendations)

@@ -8,4 +8,5 @@ public interface IDependencies {
     public IAuthenticator GetAuth();
     public IUserManager GetUserManager();
     public IFavouriteManager GetFavouriteManager();
+    public IMediaManager GetMediaManager();
 }

@@ -25,11 +25,11 @@ public class Dependencies(string dbConnectionString) : IDependencies {
     public IFavouriteManager GetFavouriteManager() {
         return new FavouriteManager(_database);
     }
-    /*
+
     public IMediaManager GetMediaManager() {
         return new MediaManager(_database);
     }
-
+    /*
     public IRatingManager GetRatingManager() {
         return new ratingManager(_database);
     }

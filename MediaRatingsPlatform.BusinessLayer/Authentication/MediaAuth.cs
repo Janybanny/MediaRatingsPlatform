@@ -11,7 +11,10 @@ public class MediaAuth : IAuth {
         var db = repositoryFactory.CreateTokenRepository();
         var verifiedToken = db.GetToken(token);
         if (verifiedToken == null) throw new ApiBadLoginDataException();
-        if (comparator != verifiedToken.UserId) throw new ApiNoAccessException();
+        if (verifiedToken.ValidUntil < DateTime.Now) {
+            db.DeleteToken(verifiedToken);
+            throw new ApiTokenExpiredException();
+        }
         var mediadb = repositoryFactory.CreateMediaRepository();
         var media = mediadb.GetMedia(new Media { Id = comparator });
         if (media == null) throw new ApiItemDoesNotExistException();

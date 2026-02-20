@@ -16,7 +16,6 @@ public class UserAuth : IAuth {
             throw new ApiTokenExpiredException();
         }
         if (comparator != verifiedToken.UserId) throw new ApiNoAccessException();
-
         UserId = verifiedToken.UserId;
     }
 }
