@@ -38,22 +38,17 @@ public class UpdateProfileEndpoint(IDependencies dependencies) : UserAuth, IHttp
 
 public class DisplayRatingsEndpoint(IDependencies dependencies) : UserAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
-        return new HttpResponse {
-            StatusCode = HttpStatusCode.NotImplemented,
-            Body = "DEBUG: DisplayRatings"
-        };
-        //success
-        var ratings = ""; // includes user ratings
+        var ratings = dependencies.GetRatingManager().GetUserRatings(new User { Id = UserId });
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok,
-            Body = ratings
+            Body = JsonSerializer.Serialize(ratings)
         };
     }
 }
 
 public class DisplayFavouritesEndpoint(IDependencies dependencies) : UserAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
-        var favourites = dependencies.GetFavouriteManager().GetFavourites(new User {Id = UserId});
+        var favourites = dependencies.GetFavouriteManager().GetFavourites(new User { Id = UserId });
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok,
             Body = JsonSerializer.Serialize(favourites)

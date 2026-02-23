@@ -29,9 +29,12 @@ public class Dependencies(string dbConnectionString) : IDependencies {
     public IMediaManager GetMediaManager() {
         return new MediaManager(_database);
     }
-    /*
+
     public IRatingManager GetRatingManager() {
-        return new ratingManager(_database);
+        return new RatingManager(_database);
     }
-    */
+
+    public IStatisticsManager GetStatisticsManager() {
+        return new StatisticsManager(_database);
+    }
 }

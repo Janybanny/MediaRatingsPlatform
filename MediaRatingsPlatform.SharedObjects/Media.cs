@@ -7,6 +7,8 @@ public class Media : IModel {
     public string? Description { get; set; }
     public string? MediaType { get; set; }
     public int? ReleaseYear { get; set; }
-    public string[]? Genres { get; set; }
+    public List<string?>? Genres { get; set; }
     public int? AgeRestriction { get; set; }
+    public List<Rating>? Ratings { get; set; }
+    public float? AverageRating { get; set; }
 }

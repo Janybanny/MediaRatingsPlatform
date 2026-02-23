@@ -6,4 +6,6 @@ public interface IRepositoryFactory {
     public IRatingRepository CreateRatingRepository();
     public IMediaRepository CreateMediaRepository();
     public IFavouriteRepository CreateFavouriteRepository();
+    public IGenreRepository CreateGenreRepository();
+    public ILikeRepository CreateLikeRepository();
 }

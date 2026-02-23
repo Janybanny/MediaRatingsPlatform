@@ -1,3 +1,4 @@
+using System.Text.Json;
 using MediaRatingsPlatform.BusinessLayer.Authentication;
 using MediaRatingsPlatform.SharedObjects;
 
@@ -5,11 +6,14 @@ namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
 public class CreateRatingEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
-        return new HttpResponse {
-            StatusCode = HttpStatusCode.NotImplemented,
-            Body = "DEBUG: CreateRating"
-        };
-        //success
+        var rating = request.Body != null ? JsonSerializer.Deserialize<Rating>(request.Body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) : null;
+        if (rating == null)
+            return new HttpResponse {
+                StatusCode = HttpStatusCode.BadRequest
+            };
+        rating.Owner = UserId;
+        rating.MediaId = request.PathId;
+        dependencies.GetRatingManager().RateMedia(rating);
         return new HttpResponse {
             StatusCode = HttpStatusCode.Created
         };
@@ -18,11 +22,7 @@ public class CreateRatingEndpoint(IDependencies dependencies) : SimpleAuth, IHtt
 
 public class LikeRatingEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
-        return new HttpResponse {
-            StatusCode = HttpStatusCode.NotImplemented,
-            Body = "DEBUG: LikeRating"
-        };
-        //success
+        dependencies.GetRatingManager().LikeRating(new Like { RatingId = request.PathId, UserId = UserId });
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok
         };
@@ -31,11 +31,22 @@ public class LikeRatingEndpoint(IDependencies dependencies) : SimpleAuth, IHttpE
 
 public class UpdateRatingEndpoint(IDependencies dependencies) : RatingAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
+        var rating = request.Body != null ? JsonSerializer.Deserialize<Rating>(request.Body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) : null;
+        if (rating == null)
+            return new HttpResponse {
+                StatusCode = HttpStatusCode.BadRequest
+            };
+        rating.Id = request.PathId;
+        dependencies.GetRatingManager().UpdateRating(rating);
         return new HttpResponse {
-            StatusCode = HttpStatusCode.NotImplemented,
-            Body = "DEBUG: UpdateRating"
+            StatusCode = HttpStatusCode.Ok
         };
-        //success
+    }
+}
+
+public class ConfirmCommentEndpoint(IDependencies dependencies) : RatingAuth, IHttpEndpoint {
+    public HttpResponse Handle(HttpRequest request) {
+        dependencies.GetRatingManager().ComfirmRatingComment(new Rating { Id = request.PathId });
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok
         };
@@ -43,29 +54,8 @@ public class UpdateRatingEndpoint(IDependencies dependencies) : RatingAuth, IHtt
 }
 
 public class DeleteRatingEndpoint(IDependencies dependencies) : RatingAuth, IHttpEndpoint {
-    private IDependencies _dependencies = dependencies;
-
     public HttpResponse Handle(HttpRequest request) {
-        return new HttpResponse {
-            StatusCode = HttpStatusCode.NotImplemented,
-            Body = "DEBUG: DeleteRating"
-        };
-        //success
-        return new HttpResponse {
-            StatusCode = HttpStatusCode.NoContent
-        };
-    }
-}
-
-public class ConfirmCommentEndpoint(IDependencies dependencies) : RatingAuth, IHttpEndpoint {
-    private IDependencies _dependencies = dependencies;
-
-    public HttpResponse Handle(HttpRequest request) {
-        return new HttpResponse {
-            StatusCode = HttpStatusCode.NotImplemented,
-            Body = "DEBUG: ConfirmComment"
-        };
-        //success
+        dependencies.GetRatingManager().DeleteRating(new Rating { Id = request.PathId });
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok
         };

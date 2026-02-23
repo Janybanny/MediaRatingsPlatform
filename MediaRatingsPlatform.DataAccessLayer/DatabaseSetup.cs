@@ -15,7 +15,7 @@ public static class DatabaseSetup {
 
         CREATE TABLE IF NOT EXISTS tokens (
           token text PRIMARY KEY,
-          userId integer UNIQUE NOT NULL REFERENCES users ON DELETE CASCADE,
+          userid integer UNIQUE NOT NULL REFERENCES users ON DELETE CASCADE,
           validuntil timestamp NOT NULL
         );
 
@@ -30,21 +30,21 @@ public static class DatabaseSetup {
         );
 
         CREATE TABLE IF NOT EXISTS genres (
-          mediaId integer REFERENCES media ON DELETE CASCADE,
+          mediaid integer REFERENCES media ON DELETE CASCADE,
           genre text NOT NULL,
           PRIMARY KEY(mediaId, genre)
         );
 
         CREATE TABLE IF NOT EXISTS favourites (
-          userId integer REFERENCES users ON DELETE CASCADE,
-          mediaId integer REFERENCES media ON DELETE CASCADE,
+          userid integer REFERENCES users ON DELETE CASCADE,
+          mediaid integer REFERENCES media ON DELETE CASCADE,
           PRIMARY KEY(userId, mediaId)
         );
 
         CREATE TABLE IF NOT EXISTS ratings (
           id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-          userId integer NOT NULL REFERENCES users ON DELETE CASCADE,
-          mediaId integer NOT NULL REFERENCES media ON DELETE CASCADE,
+          userid integer NOT NULL REFERENCES users ON DELETE CASCADE,
+          mediaid integer NOT NULL REFERENCES media ON DELETE CASCADE,
           created_at date NOT NULL,
           stars integer NOT NULL CHECK (stars > 0 AND stars < 6),
           comment text NOT NULL,
@@ -52,8 +52,8 @@ public static class DatabaseSetup {
         );
 
         CREATE TABLE IF NOT EXISTS likes (
-          userId integer REFERENCES users ON DELETE CASCADE,
-          ratingId integer REFERENCES ratings ON DELETE CASCADE,
+          userid integer REFERENCES users ON DELETE CASCADE,
+          ratingid integer REFERENCES ratings ON DELETE CASCADE,
           PRIMARY KEY(userId, ratingId)
         );
         """;

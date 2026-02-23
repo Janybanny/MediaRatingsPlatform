@@ -21,7 +21,7 @@ public class ListMediaEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEn
 
 public class DisplayMediaEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
-        var media = dependencies.GetMediaManager().GetMedia(new Media { Id = request.PathId });
+        var media = dependencies.GetMediaManager().GetMedia(new Media { Id = request.PathId }, (int)UserId!);
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok,
             Body = JsonSerializer.Serialize(media)
@@ -40,7 +40,7 @@ public class CreateMediaEndpoint(IDependencies dependencies) : SimpleAuth, IHttp
         media.Owner = UserId;
         dependencies.GetMediaManager().AddMedia(media);
         return new HttpResponse {
-            StatusCode = HttpStatusCode.Ok
+            StatusCode = HttpStatusCode.Created
         };
     }
 }

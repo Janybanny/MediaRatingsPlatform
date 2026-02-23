@@ -9,4 +9,6 @@ public interface IDependencies {
     public IUserManager GetUserManager();
     public IFavouriteManager GetFavouriteManager();
     public IMediaManager GetMediaManager();
+    public IRatingManager GetRatingManager();
+    public IStatisticsManager GetStatisticsManager();
 }

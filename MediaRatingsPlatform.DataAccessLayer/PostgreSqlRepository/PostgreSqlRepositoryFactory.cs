@@ -22,4 +22,12 @@ public class PostgreSqlRepositoryFactory(string connectionString) : IRepositoryF
     public IFavouriteRepository CreateFavouriteRepository() {
         return new PostgreSqlFavouriteRepository(connectionString);
     }
+
+    public IGenreRepository CreateGenreRepository() {
+        return new PostgreSqlGenreRepository(connectionString);
+    }
+
+    public ILikeRepository CreateLikeRepository() {
+        return new PostgreSqlLikeRepository(connectionString);
+    }
 }

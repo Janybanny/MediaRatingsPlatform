@@ -17,17 +17,16 @@ public class PostgreSqlMediaRepository(string connectionString) : PostgreSqlBase
         });
     }
 
-    public void AddMedia(Media input) {
-        ExecuteWithDbConnection(connection => {
-            using var cmd = new NpgsqlCommand("INSERT INTO media(owner, title, description, mediaType, releaseYear, ageRestriction) VALUES (@owner, @title, @description, @mediaType, @releaseYear, @ageRestriction)", connection);
+    public int AddMedia(Media input) {
+        return ExecuteWithDbConnection(connection => {
+            using var cmd = new NpgsqlCommand("INSERT INTO media(owner, title, description, mediaType, releaseYear, ageRestriction) VALUES (@owner, @title, @description, @mediaType, @releaseYear, @ageRestriction) RETURNING id", connection);
             cmd.Parameters.AddWithValue("owner", input.Owner!);
             cmd.Parameters.AddWithValue("title", input.Title!);
             cmd.Parameters.AddWithValue("description", input.Description!);
             cmd.Parameters.AddWithValue("mediaType", input.MediaType!);
             cmd.Parameters.AddWithValue("releaseYear", input.ReleaseYear!);
             cmd.Parameters.AddWithValue("ageRestriction", input.AgeRestriction!);
-            cmd.ExecuteNonQuery();
-            return true;
+            return (int)cmd.ExecuteScalar()!;
         });
     }
 
