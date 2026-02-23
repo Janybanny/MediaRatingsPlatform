@@ -6,15 +6,11 @@ namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
 public class ListMediaEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
-        return new HttpResponse {
-            StatusCode = HttpStatusCode.NotImplemented,
-            Body = "DEBUG: ListMedia"
-        };
-        //success
-        var medias = ""; // includes requested list of media
+        var mediaFilter = request.Body != null ? JsonSerializer.Deserialize<MediaFilter>(request.Body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) : null;
+        if (mediaFilter == null) return new HttpResponse { StatusCode = HttpStatusCode.BadRequest };
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok,
-            Body = medias
+            Body = JsonSerializer.Serialize(dependencies.GetMediaManager().ListMedias(mediaFilter))
         };
     }
 }

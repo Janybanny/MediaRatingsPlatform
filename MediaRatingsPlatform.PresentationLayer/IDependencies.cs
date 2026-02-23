@@ -11,4 +11,5 @@ public interface IDependencies {
     public IMediaManager GetMediaManager();
     public IRatingManager GetRatingManager();
     public IStatisticsManager GetStatisticsManager();
+    public IRecommendationManager GetRecommendationManager();
 }

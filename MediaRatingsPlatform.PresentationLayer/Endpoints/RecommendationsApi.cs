@@ -1,3 +1,4 @@
+using System.Text.Json;
 using MediaRatingsPlatform.BusinessLayer.Authentication;
 using MediaRatingsPlatform.SharedObjects;
 
@@ -7,15 +8,19 @@ public class RecommendEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEn
     private IDependencies _dependencies = dependencies;
 
     public HttpResponse Handle(HttpRequest request) {
-        return new HttpResponse {
-            StatusCode = HttpStatusCode.NotImplemented,
-            Body = "DEBUG: Recommend"
-        };
-        //success
-        var recommendations = ""; // includes recommendations
+        var type = request.Body != null ? JsonSerializer.Deserialize<string>(request.Body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) : null;
+        List<Media> recommendations;
+        if (type == "genre")
+            recommendations = dependencies.GetRecommendationManager().GetRecommendationsByGenre(new User { Id = request.PathId });
+        else if (type == "content")
+            recommendations = dependencies.GetRecommendationManager().GetRecommendationsByContent(new User { Id = request.PathId });
+        else
+            return new HttpResponse {
+                StatusCode = HttpStatusCode.BadRequest
+            };
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok,
-            Body = recommendations
+            Body = JsonSerializer.Serialize(recommendations)
         };
     }
 }

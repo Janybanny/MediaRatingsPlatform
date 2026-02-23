@@ -37,4 +37,8 @@ public class Dependencies(string dbConnectionString) : IDependencies {
     public IStatisticsManager GetStatisticsManager() {
         return new StatisticsManager(_database);
     }
+
+    public IRecommendationManager GetRecommendationManager() {
+        return new RecommendationManager(_database);
+    }
 }

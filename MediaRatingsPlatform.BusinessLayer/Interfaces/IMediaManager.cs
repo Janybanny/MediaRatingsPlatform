@@ -7,5 +7,5 @@ public interface IMediaManager {
     public void AddMedia(Media media);
     public void UpdateMedia(Media media);
     public void DeleteMedia(Media media);
-    public IEnumerable<Media>? ListMedias(Media filter);
+    public IEnumerable<Media>? ListMedias(MediaFilter filter);
 }

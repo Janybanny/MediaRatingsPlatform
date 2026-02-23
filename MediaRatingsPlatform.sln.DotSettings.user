@@ -12,4 +12,10 @@
 	<s:String x:Key="/Default/dotCover/Editor/HighlightingSourceSnapshotLocation/@EntryValue">/home/janybanny/.var/app/com.jetbrains.Rider/cache/JetBrains/Rider2025.3/resharper-host/temp/Rider/vAny/CoverageData/_MediaRatingsPlatform.-1102819892/Snapshot/snapshot.utdcvr</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1614ee7c_002D187e_002D4275_002D96c6_002De0debbafb439/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;MediaRatingsPlatform.Test&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/home/janybanny/projects/MediaRatingsPlatform/MediaRatingsPlatform.Test" Presentation="&amp;lt;MediaRatingsPlatform.Test&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a7658a9a_002Dc3ea_002D4336_002Db19d_002Df9e9a7a2e6cd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestParsingHttpRequests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::555995E6-0314-4BDF-8B20-D904C355EB0E::net10.0::MediaRatingsPlatform.Test.TestParsingHttpRequests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::555995E6-0314-4BDF-8B20-D904C355EB0E::net10.0::MediaRatingsPlatform.Test.TestRoutes&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

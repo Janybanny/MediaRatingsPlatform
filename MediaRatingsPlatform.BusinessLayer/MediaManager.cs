@@ -5,7 +5,7 @@ using MediaRatingsPlatform.SharedObjects;
 namespace MediaRatingsPlatform.BusinessLayer;
 
 public class MediaManager(IRepositoryFactory database) : IMediaManager {
-    public IEnumerable<Media> ListMedias(Media filter) {
+    public IEnumerable<Media> ListMedias(MediaFilter filter) {
         throw new ApiNotImplementedException();
     }
 
