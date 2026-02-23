@@ -52,4 +52,12 @@ public class PostgreSqlMediaRepository(string connectionString) : PostgreSqlBase
             return true;
         });
     }
+
+    public int CountMediaByUser(User input) {
+        return ExecuteWithDbConnection(connection => {
+            using var cmd = new NpgsqlCommand("SELECT COUNT(*) FROM media WHERE owner=@owner", connection);
+            cmd.Parameters.AddWithValue("owner", input.Id!);
+            return Convert.ToInt32(cmd.ExecuteScalar()!);
+        });
+    }
 }

@@ -7,4 +7,5 @@ public interface IMediaRepository : IRepository<Media> {
     public int AddMedia(Media input);
     public void DeleteMedia(Media media);
     public void UpdateMedia(Media media);
+    public int CountMediaByUser(User input);
 }

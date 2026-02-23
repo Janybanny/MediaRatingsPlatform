@@ -5,7 +5,7 @@ meta {
 }
 
 put {
-  url: http://localhost:8080/api/ratings/1
+  url: http://localhost:8080/api/ratings/5
   body: json
   auth: inherit
 }
@@ -16,11 +16,12 @@ headers {
 
 body:json {
   {
-    "stars": 4,
+    "stars": 1,
     "comment": "Updated comment"
   }
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

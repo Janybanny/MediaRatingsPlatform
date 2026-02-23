@@ -6,4 +6,7 @@ public class User : IModel {
     public string? Password { get; set; }
     public string? EMail { get; set; }
     public string? FavoriteGenre { get; set; }
+    public int? TotalMediaStatistic { get; set; }
+    public int? TotalRatingsStatistic { get; set; }
+    public double? AverageRatingStatistic { get; set; }
 }

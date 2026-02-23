@@ -87,17 +87,30 @@ USEFUL SQL STATEMENTS
 
 "INSERT INTO table(text, username) VALUES (@text, @username) RETURNING id"
 
-## 19.2.2025
+## 19.2.2025 3h
 
 - Finale checklist erstellt an todos und was noch implementiert werden muss (merge aus Spec und Checklist aus Moodle)
 - Added favouritesManager with existing workflow
 
-## 20.2.2025
+## 20.2.20255h
 
 - Added Media CRUD
 - Thoughts about adding genres. Current best idea is arrays in postgres, which are very ugly, but don't require another table (might also do another table because of recommendations)
 
-## 21.2.2025
+## 21.2.2025 4h
 
-- Als erstes draufgekommen genres hab ich schon als table in der Datenbank definiert. Daher werd ich das auch so im Code implementieren
-- 
+- Als erstes draufgekommen genres hab ich schon als table in der Datenbank definiert. Daher habe ich das auch so im Code implementiert
+- Medien fertig
+
+## 22.2.2025 12h
+
+- Added Ratings, Likes, Leaderboards, favourites lists, average ratings, etc.
+- Missing: Recommendations, Media Search, personal statistics on user page
+- Missing: Tests and Documentation
+- Everything else is completed and manually tested
+- Workflow and architecture work very well, it is easy to implement new functions :)
+
+## 23.2.2025
+
+- Added profile statistics (total media added, total ratings, average rating)
+- Set up ai so I can try and generate some tests and documentation (although writing myself should also be a rather quick option)
