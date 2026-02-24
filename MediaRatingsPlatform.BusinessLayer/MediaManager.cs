@@ -7,7 +7,6 @@ namespace MediaRatingsPlatform.BusinessLayer;
 public class MediaManager(IRepositoryFactory database) : IMediaManager {
     public IEnumerable<Media> ListMedias(MediaFilter filter, int userId) {
         IEnumerable<int> mediaIds = database.CreateMediaRepository().GetAllMediaIds();
-        // TODO get genres
         List<Media> fullmedias = [];
         foreach (var mediaId in mediaIds) fullmedias.Add(GetMedia(new Media { Id = mediaId }, userId));
         var medias = fullmedias.AsEnumerable();

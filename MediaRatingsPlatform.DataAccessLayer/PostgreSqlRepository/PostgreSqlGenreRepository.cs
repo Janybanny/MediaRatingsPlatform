@@ -35,4 +35,16 @@ public class PostgreSqlGenreRepository(string connectionString) : PostgreSqlBase
             return genres;
         });
     }
+
+    public List<Genre> GetAllGenreEntries() {
+        return ExecuteWithDbConnection<List<Genre>>(connection => {
+            using var cmd = new NpgsqlCommand("SELECT * FROM genres", connection);
+            using var reader = cmd.ExecuteReader();
+            List<Genre> genres = [];
+            while (reader.Read())
+            while (reader.Read())
+                genres.Add(new Genre { MediaId = Convert.ToInt32(reader["mediaid"]), Name = Convert.ToString(reader["genre"]) });
+            return genres;
+        });
+    }
 }

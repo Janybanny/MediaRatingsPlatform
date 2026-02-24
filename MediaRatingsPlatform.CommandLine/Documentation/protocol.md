@@ -119,3 +119,7 @@ USEFUL SQL STATEMENTS
 ## 24.2.2025
 
 - Added Searching and Filtering Media
+- Added Recommendations by Genre
+- Added Recommendations by Content
+- Finished implementing
+- Missing: Tests and Documentation :)
