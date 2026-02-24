@@ -17,6 +17,17 @@ public class PostgreSqlMediaRepository(string connectionString) : PostgreSqlBase
         });
     }
 
+    public List<int> GetAllMediaIds() {
+        return ExecuteWithDbConnection(connection => {
+            using var cmd = new NpgsqlCommand("SELECT id FROM media", connection);
+            using var reader = cmd.ExecuteReader();
+            List<int> allmedia = [];
+            while (reader.Read())
+                allmedia.Add(Convert.ToInt32(reader["id"]));
+            return allmedia;
+        });
+    }
+
     public int AddMedia(Media input) {
         return ExecuteWithDbConnection(connection => {
             using var cmd = new NpgsqlCommand("INSERT INTO media(owner, title, description, mediaType, releaseYear, ageRestriction) VALUES (@owner, @title, @description, @mediaType, @releaseYear, @ageRestriction) RETURNING id", connection);

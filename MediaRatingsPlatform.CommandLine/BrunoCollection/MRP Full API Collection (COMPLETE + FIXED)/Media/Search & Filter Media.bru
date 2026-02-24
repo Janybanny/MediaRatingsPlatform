@@ -5,17 +5,18 @@ meta {
 }
 
 get {
-  url: http://localhost:8080/api/media?title=incep&genre=sci-fi&sortBy=score
+  url: http://localhost:8080/api/media?title=incep&sortBy=score&genre=thriller
   body: none
   auth: inherit
 }
 
 params:query {
   title: incep
-  genre: sci-fi
   sortBy: score
+  genre: thriller
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

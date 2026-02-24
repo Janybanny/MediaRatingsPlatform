@@ -5,8 +5,32 @@ using MediaRatingsPlatform.SharedObjects;
 namespace MediaRatingsPlatform.BusinessLayer;
 
 public class MediaManager(IRepositoryFactory database) : IMediaManager {
-    public IEnumerable<Media> ListMedias(MediaFilter filter) {
-        throw new ApiNotImplementedException();
+    public IEnumerable<Media> ListMedias(MediaFilter filter, int userId) {
+        IEnumerable<int> mediaIds = database.CreateMediaRepository().GetAllMediaIds();
+        // TODO get genres
+        List<Media> fullmedias = [];
+        foreach (var mediaId in mediaIds) fullmedias.Add(GetMedia(new Media { Id = mediaId }, userId));
+        var medias = fullmedias.AsEnumerable();
+        // filter with linq
+        if (!string.IsNullOrEmpty(filter.Title)) medias = medias.Where(m => m.Title != null && m.Title.Contains(filter.Title, StringComparison.OrdinalIgnoreCase));
+        if (!string.IsNullOrEmpty(filter.Genre)) medias = medias.Where(m => m.Genres != null && m.Genres.Contains(filter.Genre, StringComparer.OrdinalIgnoreCase));
+        if (!string.IsNullOrEmpty(filter.MediaType)) medias = medias.Where(m => m.MediaType != null && m.MediaType.Equals(filter.MediaType, StringComparison.OrdinalIgnoreCase));
+        if (filter.ReleaseYear.HasValue) medias = medias.Where(m => m.ReleaseYear == filter.ReleaseYear.Value);
+        if (filter.AgeRestriction.HasValue) medias = medias.Where(m => m.AgeRestriction == null || m.AgeRestriction <= filter.AgeRestriction.Value);
+        if (filter.Rating.HasValue) medias = medias.Where(m => m.AverageRating >= filter.Rating.Value);
+        switch (filter.SortBy?.ToLower()) {
+            case "year":
+                medias = medias.OrderBy(m => m.ReleaseYear);
+                break;
+            case "score":
+                medias = medias.OrderByDescending(m => m.AverageRating);
+                break;
+            case "title":
+            default:
+                medias = medias.OrderBy(m => m.Title);
+                break;
+        }
+        return medias.ToList();
     }
 
     public void AddMedia(Media media) {

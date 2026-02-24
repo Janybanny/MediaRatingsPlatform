@@ -115,3 +115,7 @@ USEFUL SQL STATEMENTS
 - Added profile statistics (total media added, total ratings, average rating)
 - Completed Presentation Layer (3 functions are not yet implemented in the business layer)
 - Set up ai so I can try and generate some tests and documentation (although writing myself should also be a rather quick option)
+
+## 24.2.2025
+
+- Added Searching and Filtering Media

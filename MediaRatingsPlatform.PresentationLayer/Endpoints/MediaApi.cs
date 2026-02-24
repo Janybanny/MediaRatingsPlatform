@@ -6,11 +6,18 @@ namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
 public class ListMediaEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
-        var mediaFilter = request.Body != null ? JsonSerializer.Deserialize<MediaFilter>(request.Body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) : null;
-        if (mediaFilter == null) return new HttpResponse { StatusCode = HttpStatusCode.BadRequest };
+        var mediaFilter = new MediaFilter {
+            Title = request.QueryParams!.GetValueOrDefault("title", null),
+            Genre = request.QueryParams!.GetValueOrDefault("genre", null),
+            MediaType = request.QueryParams!.GetValueOrDefault("mediaType", null),
+            ReleaseYear = int.TryParse(request.QueryParams!.GetValueOrDefault("releaseYear", null), out var ry) ? ry : null,
+            AgeRestriction = int.TryParse(request.QueryParams!.GetValueOrDefault("ageRestriction", null), out var ar) ? ar : null,
+            Rating = int.TryParse(request.QueryParams!.GetValueOrDefault("rating", null), out var ra) ? ra : null,
+            SortBy = request.QueryParams!.GetValueOrDefault("sortBy", null)
+        };
         return new HttpResponse {
             StatusCode = HttpStatusCode.Ok,
-            Body = JsonSerializer.Serialize(dependencies.GetMediaManager().ListMedias(mediaFilter))
+            Body = JsonSerializer.Serialize(dependencies.GetMediaManager().ListMedias(mediaFilter, (int)UserId!))
         };
     }
 }

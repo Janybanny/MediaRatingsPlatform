@@ -31,10 +31,8 @@ public class HttpServer {
             } catch (ApiException ex) {
                 response = new HttpResponse { StatusCode = ex.StatusCode };
             }
-
             Respond(response, context.Response);
         }
-
         _listener.Stop();
     }
 
