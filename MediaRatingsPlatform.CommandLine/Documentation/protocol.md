@@ -1,7 +1,12 @@
-# Development log
+- protocol.txt or protocol.md with a detailed development report including:
+    - Description of technical steps and architecture decisions (also class diagram)
+    - Notes on problems encountered and how they were solved
+    - Explanation of unit test coverage and why specific logic was tested
+    - Explains 2 SOLID Principles with examples
+    - Estimated time tracking for each major part of the project
+    - consider that the git-history is part of the documentation (no need to copy it into the protocol)
 
-Jan Pleschberger
-Github link: https://github.com/Janybanny/MediaRatingsPlatform/
+# Development log & Time Tracking
 
 ## 2.10.2025 2h
 
@@ -82,10 +87,6 @@ Failed because it didn't compile correctly (no idea what exactly went wrong, but
 
 - Heute und Gestern bisschen Cleanup, damit ich das noch fertig machen kann
 - Implemented Updating User Profiles
-
-USEFUL SQL STATEMENTS
-
-"INSERT INTO table(text, username) VALUES (@text, @username) RETURNING id"
 
 ## 19.2.2025 3h
 
