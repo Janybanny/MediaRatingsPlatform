@@ -5,7 +5,7 @@ using HttpMethod = MediaRatingsPlatform.PresentationLayer.HttpMethod;
 
 namespace MediaRatingsPlatform.Test;
 
-internal class TestRoutes {
+internal class RoutesTest {
     [Test]
     public void TestValidRoute() {
         List<string?> route = ["api", "leaderboard"];

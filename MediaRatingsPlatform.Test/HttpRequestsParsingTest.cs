@@ -6,7 +6,7 @@ using HttpMethod = MediaRatingsPlatform.PresentationLayer.HttpMethod;
 
 namespace MediaRatingsPlatform.Test;
 
-public class TestParsingHttpRequests {
+public class HttpRequestsParsingTest {
     [Test]
     public void TestValidCreateHttpRequest() {
         var request = Substitute.For<IHttpListenerRequest>();
