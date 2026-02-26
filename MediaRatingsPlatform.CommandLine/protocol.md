@@ -1,5 +1,3 @@
-// @formatter:off
-
 # Development Report
 
 ## 1. Technical Steps & Architecture Decisions
@@ -250,5 +248,9 @@ Failed because it didn't compile correctly (no idea what exactly went wrong, but
 - Unit Tests für die Authentication Methods erweitert und hinzugefügt
 - Protokoll AI generiert und dann nochmals komplett überarbeitet
 - Versucht Klassendiagramm zu erstellen (nicht geschafft)
-- Ausführliche Integration Tests erstellt
 - Code nochmals gefixt wo noch Tests fehlgeschlagen haben
+
+## 26.2.2025 4h
+
+- Ausführliche Integration Tests erstellt
+- Nochmal fixes dort wo diese fehlschlagen
