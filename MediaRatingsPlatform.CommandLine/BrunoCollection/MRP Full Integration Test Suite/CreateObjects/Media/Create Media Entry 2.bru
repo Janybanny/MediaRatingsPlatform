@@ -1,0 +1,39 @@
+meta {
+  name: Create Media Entry 2
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/media
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "title2",
+    "description": "desciption2",
+    "mediaType": "book",
+    "releaseYear": 2020,
+    "genres": [
+      "genre1",
+      "genre2",
+      "genre3"
+    ],
+    "ageRestriction": 18
+  }
+}
+
+assert {
+  res.status: eq 201
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

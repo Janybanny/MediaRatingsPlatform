@@ -1,0 +1,31 @@
+meta {
+  name: Login User Bad Username
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/users/login
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "unknownuser",
+    "password": "pass123"
+  }
+}
+
+assert {
+  res.status: eq 401
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

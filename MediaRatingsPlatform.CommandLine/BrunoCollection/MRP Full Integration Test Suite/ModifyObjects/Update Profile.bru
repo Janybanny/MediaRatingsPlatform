@@ -1,0 +1,31 @@
+meta {
+  name: Update Profile
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{baseUrl}}/users/1/profile
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "email": "user1@example.com",
+    "favoriteGenre": "genre1"
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

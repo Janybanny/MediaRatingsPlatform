@@ -1,0 +1,39 @@
+meta {
+  name: Update Media Entry
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/media/1
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "Inception Updated title",
+    "description": "Updated description",
+    "mediaType": "movie",
+    "releaseYear": 2010,
+    "genres": [
+      "genre1",
+      "genre2",
+      "genre5"
+    ],
+    "ageRestriction": 12
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

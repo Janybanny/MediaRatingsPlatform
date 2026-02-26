@@ -1,0 +1,20 @@
+meta {
+  name: Get Media by ID Does Not Exist
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/media/100
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 404
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

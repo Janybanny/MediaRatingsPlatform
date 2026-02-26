@@ -1,0 +1,27 @@
+meta {
+  name: Get Media by ID after Rating Delete
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{baseUrl}}/media/2
+  body: none
+  auth: inherit
+}
+
+params:query {
+  : 
+}
+
+assert {
+  res.status: eq 200
+  res.body.Id: eq 2
+  res.body.Ratings: isEmpty
+  res.body.AverageRating: isNull
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

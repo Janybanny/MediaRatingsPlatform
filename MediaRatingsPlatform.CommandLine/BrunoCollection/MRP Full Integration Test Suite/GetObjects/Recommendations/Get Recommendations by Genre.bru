@@ -1,0 +1,27 @@
+meta {
+  name: Get Recommendations by Genre
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/users/1/recommendations?type=genre
+  body: none
+  auth: inherit
+}
+
+params:query {
+  type: genre
+}
+
+assert {
+  res.status: eq 200
+  res.body[0].Id: eq 2
+  res.body[1].Id: eq 1
+  res.body[2].Id: eq 3
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

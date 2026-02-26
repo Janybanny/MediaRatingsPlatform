@@ -1,0 +1,29 @@
+meta {
+  name: Sort Media
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/media?title=title&sortBy=year
+  body: none
+  auth: inherit
+}
+
+params:query {
+  title: title
+  sortBy: year
+}
+
+assert {
+  res.status: eq 200
+  res.body[0].Id: eq 1
+  res.body[1].Id: eq 2
+  res.body[0].AverageRating >= res.body[1].AverageRating: isTruthy
+  : eq
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

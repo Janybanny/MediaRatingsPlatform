@@ -1,0 +1,27 @@
+meta {
+  name: Search & Filter Media Empty
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/media?title=xyzimpossible&sortBy=score&genre=thriller
+  body: none
+  auth: inherit
+}
+
+params:query {
+  title: xyzimpossible
+  sortBy: score
+  genre: thriller
+}
+
+assert {
+  res.status: eq 200
+  res.body: isEmpty
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,32 @@
+meta {
+  name: Full Search & Filter
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/media?title=Inception Updated title&genre=genre5&mediaType=movie&releaseYear=2010&ageRestriction=12&rating=4&sortBy=title
+  body: none
+  auth: inherit
+}
+
+params:query {
+  title: Inception Updated title
+  genre: genre5
+  mediaType: movie
+  releaseYear: 2010
+  ageRestriction: 12
+  rating: 4
+  sortBy: title
+}
+
+assert {
+  res.status: eq 200
+  res.body[0].Id: eq 1
+  res.body[1]: isUndefined
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

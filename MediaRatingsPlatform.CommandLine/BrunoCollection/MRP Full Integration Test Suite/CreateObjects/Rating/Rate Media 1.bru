@@ -1,0 +1,31 @@
+meta {
+  name: Rate Media 1
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/media/1/rate
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "stars": 4,
+    "comment": "Amazing movie!"
+  }
+}
+
+assert {
+  res.status: eq 201
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

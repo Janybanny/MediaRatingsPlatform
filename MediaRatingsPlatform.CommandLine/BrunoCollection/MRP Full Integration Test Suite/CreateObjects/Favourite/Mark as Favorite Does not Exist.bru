@@ -1,0 +1,20 @@
+meta {
+  name: Mark as Favorite Does not Exist
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/media/100/favorite
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 404
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,20 @@
+meta {
+  name: Mark as Favorite 2
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/media/2/favorite
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 204
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

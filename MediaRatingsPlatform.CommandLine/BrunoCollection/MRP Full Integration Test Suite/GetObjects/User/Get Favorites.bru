@@ -1,0 +1,22 @@
+meta {
+  name: Get Favorites
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/users/1/favorites
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 200
+  res.body[0].Id: eq 1
+  res.body[1].Id: eq 2
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

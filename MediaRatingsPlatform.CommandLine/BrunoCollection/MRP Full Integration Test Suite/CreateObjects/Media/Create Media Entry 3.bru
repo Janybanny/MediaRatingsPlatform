@@ -1,0 +1,38 @@
+meta {
+  name: Create Media Entry 3
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/media
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "title3",
+    "description": "desciption3",
+    "mediaType": "movie",
+    "releaseYear": 2020,
+    "genres": [
+      "genre3",
+      "genre5"
+    ],
+    "ageRestriction": 0
+  }
+}
+
+assert {
+  res.status: eq 201
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

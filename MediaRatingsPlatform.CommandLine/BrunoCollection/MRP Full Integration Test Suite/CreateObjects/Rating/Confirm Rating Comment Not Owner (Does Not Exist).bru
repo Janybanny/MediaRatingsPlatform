@@ -1,0 +1,20 @@
+meta {
+  name: Confirm Rating Comment Not Owner (Does Not Exist)
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/ratings/100/confirm
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 404
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

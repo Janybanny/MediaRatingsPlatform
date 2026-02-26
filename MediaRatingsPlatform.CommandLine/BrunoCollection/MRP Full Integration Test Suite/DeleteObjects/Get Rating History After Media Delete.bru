@@ -1,0 +1,27 @@
+meta {
+  name: Get Rating History After Media Delete
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/users/1/ratings
+  body: none
+  auth: inherit
+}
+
+params:query {
+  : 
+}
+
+assert {
+  res.status: eq 200
+  res.body[0].Id: eq 2
+  res.body[1]: isUndefined
+  res.body[0].MediaId: neq 1
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

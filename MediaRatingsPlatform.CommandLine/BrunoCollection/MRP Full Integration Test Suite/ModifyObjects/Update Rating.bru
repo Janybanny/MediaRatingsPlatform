@@ -1,0 +1,31 @@
+meta {
+  name: Update Rating
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{baseUrl}}/ratings/2
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "stars": 2,
+    "comment": "Updated comment"
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

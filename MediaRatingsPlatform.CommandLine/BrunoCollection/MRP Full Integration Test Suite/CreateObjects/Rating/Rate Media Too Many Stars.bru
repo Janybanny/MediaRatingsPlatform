@@ -1,0 +1,31 @@
+meta {
+  name: Rate Media Too Many Stars
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/media/2/rate
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "stars": 6,
+    "comment": "Amazing movie!"
+  }
+}
+
+assert {
+  res.status: eq 400
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

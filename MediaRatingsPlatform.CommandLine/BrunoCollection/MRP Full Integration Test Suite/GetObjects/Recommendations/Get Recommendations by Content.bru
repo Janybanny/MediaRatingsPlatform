@@ -1,0 +1,27 @@
+meta {
+  name: Get Recommendations by Content
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/users/1/recommendations?type=content
+  body: none
+  auth: inherit
+}
+
+params:query {
+  type: content
+}
+
+assert {
+  res.status: eq 200
+  res.body[0].Id: eq 1
+  res.body[1].Id: eq 2
+  res.body[2].Id: eq 3
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
