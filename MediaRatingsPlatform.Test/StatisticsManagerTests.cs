@@ -7,11 +7,6 @@ namespace MediaRatingsPlatform.Test;
 
 [TestFixture]
 public class StatisticsManagerTests {
-    private IRepositoryFactory _factory = null!;
-    private IRatingRepository _ratingRepo = null!;
-    private IUserRepository _userRepo = null!;
-    private StatisticsManager _sut = null!;
-
     [SetUp]
     public void SetUp() {
         _factory = Substitute.For<IRepositoryFactory>();
@@ -24,11 +19,16 @@ public class StatisticsManagerTests {
         _sut = new StatisticsManager(_factory);
     }
 
+    private IRepositoryFactory _factory = null!;
+    private IRatingRepository _ratingRepo = null!;
+    private IUserRepository _userRepo = null!;
+    private StatisticsManager _sut = null!;
+
     [Test]
     public void GetLeaderboard_MapsUserIdsToUsernames() {
         var idLeaderboard = new List<LeaderboardEntry> {
-            new LeaderboardEntry { user = 1, ratings = 5 },
-            new LeaderboardEntry { user = 2, ratings = 3 }
+            new() { User = 1, Ratings = 5 },
+            new() { User = 2, Ratings = 3 }
         };
 
         _ratingRepo.GetLeaderboard().Returns(idLeaderboard);
@@ -38,17 +38,17 @@ public class StatisticsManagerTests {
         var result = _sut.GetLeaderboard();
 
         Assert.That(result, Has.Count.EqualTo(2));
-        Assert.That(result[0].user, Is.EqualTo("alice"));
-        Assert.That(result[0].ratings, Is.EqualTo(5));
-        Assert.That(result[1].user, Is.EqualTo("bob"));
-        Assert.That(result[1].ratings, Is.EqualTo(3));
+        Assert.That(result[0].User, Is.EqualTo("alice"));
+        Assert.That(result[0].Ratings, Is.EqualTo(5));
+        Assert.That(result[1].User, Is.EqualTo("bob"));
+        Assert.That(result[1].Ratings, Is.EqualTo(3));
     }
 
     [Test]
     public void GetLeaderboard_PreservesOrderingFromRepository() {
         var idLeaderboard = new List<LeaderboardEntry> {
-            new LeaderboardEntry { user = 10, ratings = 9 },
-            new LeaderboardEntry { user = 5, ratings = 12 }
+            new() { User = 10, Ratings = 9 },
+            new() { User = 5, Ratings = 12 }
         };
 
         _ratingRepo.GetLeaderboard().Returns(idLeaderboard);
@@ -57,8 +57,8 @@ public class StatisticsManagerTests {
 
         var result = _sut.GetLeaderboard();
 
-        Assert.That(result[0].user, Is.EqualTo("first"));
-        Assert.That(result[1].user, Is.EqualTo("second"));
+        Assert.That(result[0].User, Is.EqualTo("first"));
+        Assert.That(result[1].User, Is.EqualTo("second"));
     }
 
     [Test]

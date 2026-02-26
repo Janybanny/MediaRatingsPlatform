@@ -5,7 +5,7 @@ using MediaRatingsPlatform.SharedObjects;
 namespace MediaRatingsPlatform.BusinessLayer;
 
 public class UserManager(IRepositoryFactory database) : IUserManager {
-    public User? GetProfile(User input) {
+    public User GetProfile(User input) {
         var db = database.CreateUserRepository();
         var user = db.GetUser(input);
         user!.TotalMediaStatistic = database.CreateMediaRepository().CountMediaByUser(user);

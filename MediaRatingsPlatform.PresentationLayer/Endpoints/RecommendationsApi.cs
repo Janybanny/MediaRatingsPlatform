@@ -5,8 +5,6 @@ using MediaRatingsPlatform.SharedObjects;
 namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
 public class RecommendEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEndpoint {
-    private IDependencies _dependencies = dependencies;
-
     public HttpResponse Handle(HttpRequest request) {
         var type = request.Body != null ? JsonSerializer.Deserialize<string>(request.Body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) : null;
         List<Media> recommendations;

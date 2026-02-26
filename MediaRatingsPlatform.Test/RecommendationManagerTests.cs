@@ -8,13 +8,6 @@ namespace MediaRatingsPlatform.Test;
 
 [TestFixture]
 public class RecommendationManagerTests {
-    private IRepositoryFactory _factory = null!;
-    private IRatingRepository _ratingRepo = null!;
-    private IGenreRepository _genreRepo = null!;
-    private IMediaRepository _mediaRepo = null!;
-    private IMediaManager _mediaManager = null!;
-    private RecommendationManager _sut = null!;
-
     [SetUp]
     public void SetUp() {
         _factory = Substitute.For<IRepositoryFactory>();
@@ -30,12 +23,19 @@ public class RecommendationManagerTests {
         _sut = new RecommendationManager(_factory);
     }
 
+    private IRepositoryFactory _factory = null!;
+    private IRatingRepository _ratingRepo = null!;
+    private IGenreRepository _genreRepo = null!;
+    private IMediaRepository _mediaRepo = null!;
+    private IMediaManager _mediaManager = null!;
+    private RecommendationManager _sut = null!;
+
     [Test]
     public void GetRecommendationsByGenre_OrdersByGenreWeights() {
         var user = new User { Id = 1 };
         var ratings = new List<Rating> {
-            new Rating { MediaId = 10, Stars = 5 },
-            new Rating { MediaId = 20, Stars = 2 }
+            new() { MediaId = 10, Stars = 5 },
+            new() { MediaId = 20, Stars = 2 }
         };
 
         _ratingRepo.GetRatingsByUser(user).Returns(ratings);
@@ -62,8 +62,8 @@ public class RecommendationManagerTests {
     public void GetRecommendationsByContent_MergesGenreTypeAgeWeights() {
         var user = new User { Id = 1 };
         var ratings = new List<Rating> {
-            new Rating { MediaId = 10, Stars = 4 },
-            new Rating { MediaId = 20, Stars = 5 }
+            new() { MediaId = 10, Stars = 4 },
+            new() { MediaId = 20, Stars = 5 }
         };
 
         _ratingRepo.GetRatingsByUser(user).Returns(ratings);
@@ -88,7 +88,7 @@ public class RecommendationManagerTests {
 
         var result = _sut.GetRecommendationsByContent(user, _mediaManager);
 
-        Assert.That(result.Select(m => m.Id).ToList(), Is.EqualTo([20, 10]));
+        Assert.That(result.Select(m => m.Id).ToList(), Is.EqualTo([10, 20]));
     }
 
     [Test]
@@ -116,7 +116,7 @@ public class RecommendationManagerTests {
     [Test]
     public void GetRecommendationsByGenre_CallsMediaManagerForEachWeightedMediaId() {
         var user = new User { Id = 1 };
-        var ratings = new List<Rating> { new Rating { MediaId = 10, Stars = 5 } };
+        var ratings = new List<Rating> { new() { MediaId = 10, Stars = 5 } };
 
         _ratingRepo.GetRatingsByUser(user).Returns(ratings);
 

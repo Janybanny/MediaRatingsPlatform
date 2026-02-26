@@ -6,7 +6,7 @@ namespace MediaRatingsPlatform.DataAccessLayer.PostgreSqlRepository;
 
 public class PostgreSqlMediaRepository(string connectionString) : PostgreSqlBaseRepository(connectionString), IMediaRepository {
     public Media? GetMedia(Media input) {
-        return ExecuteWithDbConnection<Media>(connection => {
+        return ExecuteWithDbConnection<Media?>(connection => {
             using var cmd = new NpgsqlCommand("SELECT * FROM media WHERE id=@id", connection);
             cmd.Parameters.AddWithValue("id", input.Id!);
             using var reader = cmd.ExecuteReader();

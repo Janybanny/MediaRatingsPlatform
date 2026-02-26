@@ -71,7 +71,7 @@ public class PostgreSqlRatingRepository(string connectionString) : PostgreSqlBas
             using var cmd = new NpgsqlCommand("SELECT userid, COUNT(*) AS rating_count FROM ratings GROUP BY userid ORDER BY rating_count DESC;", connection);
             using var reader = cmd.ExecuteReader();
             List<LeaderboardEntry> leaderboard = [];
-            while (reader.Read()) leaderboard.Add(new LeaderboardEntry { user = Convert.ToInt32(reader["userid"]), ratings = Convert.ToInt32(reader["rating_count"]) });
+            while (reader.Read()) leaderboard.Add(new LeaderboardEntry { User = Convert.ToInt32(reader["userid"]), Ratings = Convert.ToInt32(reader["rating_count"]) });
             return leaderboard;
         });
     }

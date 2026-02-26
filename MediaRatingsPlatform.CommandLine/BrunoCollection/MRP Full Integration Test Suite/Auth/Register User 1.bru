@@ -16,9 +16,13 @@ headers {
 
 body:json {
   {
-    "username": "user2",
+    "username": "user1",
     "password": "pass123"
   }
+}
+
+assert {
+  res.status: eq 20
 }
 
 settings {

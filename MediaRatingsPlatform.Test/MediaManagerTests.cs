@@ -223,6 +223,6 @@ public class MediaManagerTests {
         _genreRepo.GetGenres(Arg.Any<Genre>()).Returns([]);
         _ratingRepo.GetRatingsByMedia(Arg.Any<Media>()).Returns([]);
 
-        Assert.Throws<ApiItemDoesNotExistException>(() => _sut.ListMedias(new MediaFilter(), 1).ToList());
+        Assert.Throws<ApiItemDoesNotExistException>(() => _sut.ListMedias(new MediaFilter(), 1));
     }
 }

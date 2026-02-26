@@ -9,7 +9,7 @@ public class StatisticsManager(IRepositoryFactory database) : IStatisticsManager
         var idLeaderboard = database.CreateRatingRepository().GetLeaderboard();
         var userdb = database.CreateUserRepository();
         List<LeaderboardNameEntry> leaderboard = [];
-        foreach (var entry in idLeaderboard) leaderboard.Add(new LeaderboardNameEntry { ratings = entry.ratings, user = userdb.GetUser(new User { Id = entry.user })!.Username! });
+        foreach (var entry in idLeaderboard) leaderboard.Add(new LeaderboardNameEntry { Ratings = entry.Ratings, User = userdb.GetUser(new User { Id = entry.User })!.Username! });
         return leaderboard;
     }
 }

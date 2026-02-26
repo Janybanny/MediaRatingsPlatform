@@ -1,11 +1,11 @@
 namespace MediaRatingsPlatform.SharedObjects;
 
 public class LeaderboardEntry : IModel {
-    public int user { get; set; }
-    public int ratings { get; set; }
+    public int User { get; set; }
+    public int Ratings { get; set; }
 }
 
 public class LeaderboardNameEntry : IModel {
-    public string user { get; set; }
-    public int ratings { get; set; }
+    public string User { get; set; } = null!;
+    public int Ratings { get; set; }
 }
