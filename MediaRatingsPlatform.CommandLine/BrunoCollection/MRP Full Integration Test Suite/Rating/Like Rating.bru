@@ -1,0 +1,16 @@
+meta {
+  name: Like Rating
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/ratings/1/like
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

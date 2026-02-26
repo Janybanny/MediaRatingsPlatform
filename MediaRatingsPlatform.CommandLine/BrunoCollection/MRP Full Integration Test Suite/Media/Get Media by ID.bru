@@ -1,0 +1,16 @@
+meta {
+  name: Get Media by ID
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/media/1
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

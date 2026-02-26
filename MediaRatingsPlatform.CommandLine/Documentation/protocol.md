@@ -1,12 +1,251 @@
-- protocol.txt or protocol.md with a detailed development report including:
-    - Description of technical steps and architecture decisions (also class diagram)
-    - Notes on problems encountered and how they were solved
-    - Explanation of unit test coverage and why specific logic was tested
-    - Explains 2 SOLID Principles with examples
-    - Estimated time tracking for each major part of the project
-    - consider that the git-history is part of the documentation (no need to copy it into the protocol)
+# Development Report
 
-# Development log & Time Tracking
+## 1. Technical Steps & Architecture Decisions
+
+### Architecture Overview
+
+The project follows a layered architecture with clear separation of responsibilities:
+
+-
+*
+*PresentationLayer
+**: HTTP server, routing, request parsing, endpoint classes.
+-
+*
+*BusinessLayer
+**: Domain logic (e.g.,
+`MediaManager`,
+`FavouriteManager`,
+`RatingManager`,
+`StatisticsManager`,
+`UserManager`,
+`Authenticator`) and Authentication Modules (
+`Authentication` folder).
+-
+*
+*DataAccessLayer
+**: Repository interfaces and PostgreSQL implementations.
+-
+*
+*SharedObjects
+**: DTOs and shared models (e.g.,
+`MediaFilter`).
+-
+*
+*Test
+**: Unit Tests
+-
+*
+*CommandLine
+**: Utility to define Dependencies and kickstart the program, home to documentation and Integration Tests (non-code parts).
+
+*
+*Key
+decisions
+**
+
+-
+*
+*Interfaces
+for
+boundaries
+**: Interfaces such as
+`IAuthenticator`,
+`IRatingRepository`, and other repository abstractions reduce coupling and enable unit testing.
+-
+*
+*Exception
+model
+for
+HTTP
+**: Custom API exceptions provide a consistent way to translate domain errors to HTTP responses.
+-
+*
+*Dependency
+Injection
+in
+Centralized
+Files
+**: All Dependencies for Dependency Inejection can be found in the
+`Dependencies.cs` file in the MediaRatingsPlatform.CommandLine project. This also defines a Database Repository Factory, which allows for choosing between different database implementations (if implemented, this project only includes a postgres backend)
+-
+*
+*Explicit
+routing
+**: Centralized route mapping for clarity and maintainability in the Presentation Layer in
+`Routes.cs`.
+-
+*
+*Forced
+Interfaces
+to
+ensure
+Guidelines
+**:
+`IModel` for models ensures DataAccessLayer Repositories only implement one DTO, Endpoint Dependencies need to implement
+`IAuth` to ensure Authentication is always actively decided and not forgotten.
+-
+*
+*Tight
+Database
+Design
+**: The database is designed to cascade on delete and generate identities for id values to prevent breakage on a database level.
+
+### Class Diagram
+
+I made an attempt to generate it with plantuml but gave up after around 1 hour, because it is just incredibly large and didn't turn out so I would be happy. No class diagram this time :(
+
+## 2. Problems Encountered & Solutions
+
+-
+*
+*Routing
+complexity
+and
+memory
+overhead
+**  
+*
+*Problem
+**: Loading all endpoints upfront felt wasteful and complicated.  
+*
+*Solution
+**: Reworked routing into a switch-based dispatch to avoid eager loading. This should allow for better scalability later on, where different routes can easily be dispatched in seperate threads.
+
+-
+*
+*Testing
+HTTP
+parsing
+**  
+*
+*Problem
+**: The HTTP request parser was tightly bound to server flow.  
+*
+*Solution
+**: Extracted parser into
+`CreateHttpRequest` behind an interface for direct unit testing.
+
+-
+*
+*Auth
+integration
+consistency
+**  
+*
+*Problem
+**: Risk of forgetting authentication in endpoints.
+*
+*Solution
+**: Auth dependency enforced at the interface level, so every endpoint must provide auth.
+
+## 3. Unit Test Coverage & Rationale
+
+*
+*Strategy
+**
+
+-
+*
+*Business
+Layer
+first
+**: Core domain logic tested via unit tests because it’s most critical and easiest to validate independently.
+-
+*
+*Boundary
+behavior
+**: Authentication and routing behavior verified since errors there affect all features.
+-
+*
+*AI
+Generation
+**: A lot of Unit Tests are AI generated and then human reviewed and adjusted to speed up development time
+
+*
+*What
+is
+tested
+and
+why
+**
+
+-
+*
+*Authentication
+** (
+`AuthenticatorTests`): Ensures token creation/validation works since it gates all protected endpoints.
+-
+*
+*Managers
+** (
+`MediaManagerTests`,
+`FavouriteManagerTests`,
+`RatingManagerTests`,
+`StatisticsManagerTests`,
+`UserManagerTests`):
+Validates domain workflows such as CRUD, aggregates, and profile statistics to prevent regressions.
+-
+*
+*Routing/Presentation
+** (
+`RoutesTest`): Confirms correct endpoint resolution and integration flow.
+-
+*
+*Authentication
+Modules
+Tests
+** (
+`TestAuth`) Authentication Tests, which make sure that access control is enforced (users cannot access media, ratings, user data or comments that they do not own or have access to view)
+
+This focuses coverage on logic where faults are costly (auth, stats, routing), while keeping integration checks in Bruno.
+[README.md](../../README.md)
+The DAL depends on a running PostgreSQL instance and real schema state, which makes isolated unit tests less useful. Instead, correctness is validated through integration tests via HTTP endpoints and manual verification against the real database to make sure all the data is saved correctly.
+
+## 4. SOLID Principles (with project examples)
+
+1.
+*
+*Single
+Responsibility
+Principle (
+SRP)
+**
+
+-
+`CreateHttpRequest` focuses only on parsing HTTP requests.
+-
+`MediaManager` focuses on media domain logic (validation, orchestration), not HTTP or database details.
+
+2.
+*
+*Dependency
+Inversion
+Principle (
+DIP)
+**
+
+- Business logic depends on abstractions like
+  `IRatingRepository` and
+  `IAuthenticator`, not concrete PostgreSQL classes.
+- Enables swapping repositories or mocks in unit tests without changing managers.
+
+## 5. Time Tracking (Summary by Major Tasks)
+
+| Task                                     | Estimated Time | Notes                                 |
+|------------------------------------------|---------------:|---------------------------------------|
+| Requirements analysis & initial diagrams |             8h | Spec review + early class/DB diagrams |
+| HTTP server & routing                    |             8h | Server, routes, and HTTP parsing      |
+| Database design & repositories           |             7h | Schema + PostgreSQL repositories      |
+| Business logic implementation            |            30h | Managers, auth, media, ratings, stats |
+| Testing (unit + HTTP)                    |            11h | Unit tests + HTTP integration checks  |
+| Documentation                            |             8h | Protocol + final adjustments          |
+
+Detailed per-day tracking remains below. Git history is part of the documentation, but especially in the beginning not very clean (gets better over time and is a learning for future projects).
+
+# Detailed Development log & Time Tracking from during the project
+
+All the details here are already mentioned above, this is just included for completeness
 
 ## 2.10.2025 2h
 
@@ -93,7 +332,7 @@ Failed because it didn't compile correctly (no idea what exactly went wrong, but
 - Finale checklist erstellt an todos und was noch implementiert werden muss (merge aus Spec und Checklist aus Moodle)
 - Added favouritesManager with existing workflow
 
-## 20.2.20255h
+## 20.2.2025 5h
 
 - Added Media CRUD
 - Thoughts about adding genres. Current best idea is arrays in postgres, which are very ugly, but don't require another table (might also do another table because of recommendations)
@@ -101,7 +340,7 @@ Failed because it didn't compile correctly (no idea what exactly went wrong, but
 ## 21.2.2025 4h
 
 - Als erstes draufgekommen genres hab ich schon als table in der Datenbank definiert. Daher habe ich das auch so im Code implementiert
-- Medien fertig
+- Media fertig
 
 ## 22.2.2025 12h
 
@@ -111,16 +350,27 @@ Failed because it didn't compile correctly (no idea what exactly went wrong, but
 - Everything else is completed and manually tested
 - Workflow and architecture work very well, it is easy to implement new functions :)
 
-## 23.2.2025
+## 23.2.2025 4h
 
 - Added profile statistics (total media added, total ratings, average rating)
 - Completed Presentation Layer (3 functions are not yet implemented in the business layer)
 - Set up ai so I can try and generate some tests and documentation (although writing myself should also be a rather quick option)
 
-## 24.2.2025
+## 24.2.2025 5h
 
 - Added Searching and Filtering Media
 - Added Recommendations by Genre
 - Added Recommendations by Content
 - Finished implementing
-- Missing: Tests and Documentation :)
+- Missing: Tests and Documentation :/
+
+## 25.2.2025 6h
+
+- Unit Tests für den Business Layer mit AI generiert und dann angepasst
+- Code gefixt wo Unit Tests Fehler aufgezeigt haben
+- Unit Tests für die Authentication Methods erweitert und hinzugefügt
+- Protokoll AI generiert und dann nochmals erweitert
+
+## 26.2.2025
+
+- Klassendiagramm ?
