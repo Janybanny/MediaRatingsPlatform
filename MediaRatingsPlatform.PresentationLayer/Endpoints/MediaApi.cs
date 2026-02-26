@@ -35,7 +35,7 @@ public class DisplayMediaEndpoint(IDependencies dependencies) : SimpleAuth, IHtt
 public class CreateMediaEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
         var media = request.Body != null ? JsonSerializer.Deserialize<Media>(request.Body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) : null;
-        if (media == null)
+        if (media == null || media.Title == "")
             return new HttpResponse {
                 StatusCode = HttpStatusCode.BadRequest
             };
@@ -60,7 +60,7 @@ public class DeleteMediaEndpoint(IDependencies dependencies) : MediaAuth, IHttpE
 public class UpdateMediaEndpoint(IDependencies dependencies) : MediaAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
         var media = request.Body != null ? JsonSerializer.Deserialize<Media>(request.Body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) : null;
-        if (media == null)
+        if (media == null || media.Title == "")
             return new HttpResponse {
                 StatusCode = HttpStatusCode.BadRequest
             };

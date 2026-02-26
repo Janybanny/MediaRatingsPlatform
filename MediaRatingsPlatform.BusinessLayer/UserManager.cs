@@ -19,6 +19,7 @@ public class UserManager(IRepositoryFactory database) : IUserManager {
             }
         user.TotalRatingsStatistic = counter;
         user.AverageRatingStatistic = counter == 0 ? 0 : total / counter;
+        user.Password = null;
         return user;
     }
 

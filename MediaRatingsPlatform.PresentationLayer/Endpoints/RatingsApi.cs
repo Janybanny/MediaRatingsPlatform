@@ -7,7 +7,7 @@ namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 public class CreateRatingEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
         var rating = request.Body != null ? JsonSerializer.Deserialize<Rating>(request.Body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) : null;
-        if (rating == null)
+        if (rating == null || rating.Stars < 1 || rating.Stars > 5)
             return new HttpResponse {
                 StatusCode = HttpStatusCode.BadRequest
             };
@@ -24,7 +24,7 @@ public class LikeRatingEndpoint(IDependencies dependencies) : SimpleAuth, IHttpE
     public HttpResponse Handle(HttpRequest request) {
         dependencies.GetRatingManager().LikeRating(new Like { RatingId = request.PathId, UserId = UserId });
         return new HttpResponse {
-            StatusCode = HttpStatusCode.Ok
+            StatusCode = HttpStatusCode.NoContent
         };
     }
 }
@@ -32,7 +32,7 @@ public class LikeRatingEndpoint(IDependencies dependencies) : SimpleAuth, IHttpE
 public class UpdateRatingEndpoint(IDependencies dependencies) : RatingAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
         var rating = request.Body != null ? JsonSerializer.Deserialize<Rating>(request.Body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) : null;
-        if (rating == null)
+        if (rating == null || rating.Stars < 1 || rating.Stars > 5)
             return new HttpResponse {
                 StatusCode = HttpStatusCode.BadRequest
             };

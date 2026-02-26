@@ -6,8 +6,8 @@ namespace MediaRatingsPlatform.PresentationLayer.Endpoints;
 
 public class RecommendEndpoint(IDependencies dependencies) : SimpleAuth, IHttpEndpoint {
     public HttpResponse Handle(HttpRequest request) {
-        var type = request.Body != null ? JsonSerializer.Deserialize<string>(request.Body, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) : null;
         List<Media> recommendations;
+        var type = request.QueryParams!.GetValueOrDefault("type", null);
         if (type == "genre")
             recommendations = dependencies.GetRecommendationManager().GetRecommendationsByGenre(new User { Id = request.PathId }, dependencies.GetMediaManager());
         else if (type == "content")

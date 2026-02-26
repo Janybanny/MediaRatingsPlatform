@@ -31,7 +31,7 @@ public class RatingManager(IRepositoryFactory database) : IRatingManager {
     public void LikeRating(Like like) {
         if (database.CreateRatingRepository().GetRatingById(new Rating { Id = like.RatingId }) == null) throw new ApiItemDoesNotExistException();
         var likedb = database.CreateLikeRepository();
-        if (!likedb.GetLike(like)) likedb.LikeRating(like);
+        likedb.LikeRating(like);
     }
 
     public void UpdateRating(Rating rating) {
